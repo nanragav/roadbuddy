@@ -82,6 +82,15 @@ const DriverPage = () => {
         "Account holder name confirmation",
       ],
     },
+    {
+      category: "Background Checks",
+      items: [
+        "Behavior and conduct verification",
+        "Police complaint history review",
+        "Team member suitability assessment",
+        "Reference and background validation",
+      ],
+    },
   ];
 
   const testimonials = [
@@ -216,13 +225,13 @@ const DriverPage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-100"
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-100 h-full"
               >
-                <div className="text-center">
+                <div className="text-center h-full flex flex-col">
                   <div className="text-6xl mb-6">{benefit.icon}</div>
 
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">
@@ -233,7 +242,7 @@ const DriverPage = () => {
                     {benefit.description}
                   </p>
 
-                  <p className="text-gray-600">{benefit.details}</p>
+                  <p className="text-gray-600 flex-grow">{benefit.details}</p>
                 </div>
               </div>
             ))}
@@ -257,23 +266,32 @@ const DriverPage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {requirements.map((req, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+                className={`bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 h-full ${
+                  index === requirements.length - 1
+                    ? "lg:col-start-2 lg:col-span-1"
+                    : ""
+                }`}
               >
-                <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
-                  {req.category}
-                </h3>
-                <ul className="space-y-3">
-                  {req.items.map((item, itemIndex) => (
-                    <li key={itemIndex} className="flex items-start space-x-3">
-                      <span className="text-green-500 font-bold">✓</span>
-                      <span className="text-gray-700">{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="h-full flex flex-col">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
+                    {req.category}
+                  </h3>
+                  <ul className="space-y-3 flex-grow">
+                    {req.items.map((item, itemIndex) => (
+                      <li
+                        key={itemIndex}
+                        className="flex items-start space-x-3"
+                      >
+                        <span className="text-green-500 font-bold mt-1">✓</span>
+                        <span className="text-gray-700">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
           </div>
