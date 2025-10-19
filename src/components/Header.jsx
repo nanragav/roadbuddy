@@ -26,6 +26,16 @@ const Header = () => {
     { path: "/contact", label: "Contact" },
   ];
 
+  const handleNavClick = (path) => {
+    if (location.pathname === path) {
+      // If already on the page, scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // Navigate to the new page
+      navigate(path);
+    }
+  };
+
   return (
     <>
       {/* Top Bar */}
@@ -84,10 +94,10 @@ const Header = () => {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
               {navLinks.map((link) => (
-                <Link
+                <button
                   key={link.path}
-                  to={link.path}
-                  className={`font-medium transition-colors duration-200 relative group ${
+                  onClick={() => handleNavClick(link.path)}
+                  className={`font-medium transition-colors duration-200 relative group cursor-pointer ${
                     location.pathname === link.path
                       ? "text-primary-600"
                       : "text-gray-700 hover:text-primary-600"
@@ -101,7 +111,7 @@ const Header = () => {
                         : "scale-x-0 group-hover:scale-x-100"
                     }`}
                   />
-                </Link>
+                </button>
               ))}
             </nav>
 
@@ -131,18 +141,20 @@ const Header = () => {
             <div className="container-custom py-4">
               <nav className="flex flex-col space-y-4">
                 {navLinks.map((link) => (
-                  <Link
+                  <button
                     key={link.path}
-                    to={link.path}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`font-medium py-2 px-4 rounded-md transition-colors ${
+                    onClick={() => {
+                      handleNavClick(link.path);
+                      setIsMenuOpen(false);
+                    }}
+                    className={`font-medium py-2 px-4 rounded-md transition-colors text-left ${
                       location.pathname === link.path
                         ? "text-primary-600 bg-primary-50"
                         : "text-gray-700 hover:text-primary-600 hover:bg-gray-100"
                     }`}
                   >
                     {link.label}
-                  </Link>
+                  </button>
                 ))}
                 <button
                   onClick={() => navigate("/contact")}
