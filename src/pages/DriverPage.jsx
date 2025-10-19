@@ -8,40 +8,40 @@ const DriverPage = () => {
 
   const benefits = [
     {
+      icon: "🛡️",
+      title: "Comprehensive Insurance",
+      description: "Per ride coverage for you and clients",
+      details: "Fully insured at booking confirmation",
+    },
+    {
       icon: "💰",
-      title: "Competitive Pay",
-      description: "$25-40/hour based on experience",
-      details: "Weekly payments with performance bonuses",
+      title: "Competitive Earnings",
+      description: "₹99-129 per ride based on distance",
+      details: "Direct payments with performance incentives",
     },
     {
       icon: "⏰",
       title: "Flexible Schedule",
-      description: "Choose your own hours",
-      details: "Work when you want, where you want",
+      description: "Choose your available hours",
+      details: "Work when it suits your lifestyle",
     },
     {
       icon: "🚗",
-      title: "Company Vehicle",
-      description: "Fully equipped service trucks",
-      details: "All tools and equipment provided",
+      title: "Vehicle Operation",
+      description: "Drive clients' vehicles safely",
+      details: "Professional transportation services",
     },
     {
-      icon: "🏥",
-      title: "Full Benefits",
-      description: "Health, dental, vision insurance",
-      details: "Plus retirement savings plan",
-    },
-    {
-      icon: "📚",
-      title: "Training Provided",
-      description: "Comprehensive onboarding program",
-      details: "Ongoing professional development",
+      icon: "📍",
+      title: "Local & Long Distance",
+      description: "Drop-off and transport services",
+      details: "From local trips to destination transfers",
     },
     {
       icon: "🎯",
-      title: "Career Growth",
-      description: "Advancement opportunities",
-      details: "Lead driver and management roles",
+      title: "Verified Clients",
+      description: "Pre-screened and confirmed bookings",
+      details: "Safe and reliable ride opportunities",
     },
   ];
 
@@ -49,33 +49,33 @@ const DriverPage = () => {
     {
       category: "Licensing",
       items: [
-        "Valid driver's license (3+ years)",
-        "Clean driving record",
-        "Commercial license preferred",
+        "Valid driver's license (2+ years)",
+        "Clean driving record required",
+        "No major violations in 3 years",
       ],
     },
     {
       category: "Experience",
       items: [
-        "Automotive knowledge required",
-        "Customer service experience",
-        "Roadside assistance preferred",
+        "Safe driving experience preferred",
+        "Customer service background",
+        "Professional transportation knowledge",
       ],
     },
     {
       category: "Skills",
       items: [
-        "Problem-solving abilities",
-        "Physical fitness required",
-        "Professional communication",
+        "Excellent communication skills",
+        "GPS and navigation proficiency",
+        "Professional demeanor",
       ],
     },
     {
       category: "Background",
       items: [
         "Background check required",
-        "Drug screening",
-        "Professional references",
+        "Reference verification",
+        "Insurance eligibility confirmation",
       ],
     },
   ];
@@ -111,22 +111,22 @@ const DriverPage = () => {
     {
       question: "What are the working hours?",
       answer:
-        "We offer 24/7 service, so you can choose shifts that work for you. Full-time, part-time, and weekend-only options available.",
+        "We offer flexible scheduling to match your availability. Choose from morning, afternoon, evening, or weekend shifts based on client demand.",
     },
     {
       question: "Do I need my own vehicle?",
       answer:
-        "No! We provide fully equipped service vehicles with all necessary tools and equipment.",
+        "No vehicle required! You'll operate clients' vehicles for their transportation needs, providing professional driving services.",
     },
     {
       question: "What type of training do you provide?",
       answer:
-        "Complete 2-week training program covering safety, customer service, technical skills, and company procedures.",
+        "Comprehensive training program covering safe driving practices, customer service excellence, GPS navigation, and emergency procedures.",
     },
     {
       question: "How much can I earn?",
       answer:
-        "Starting pay is $25/hour with experience-based increases up to $40/hour, plus performance bonuses and overtime opportunities.",
+        "Earnings range from ₹99-129 per ride depending on distance and duration, with opportunities for bonuses and frequent rider incentives.",
     },
   ];
 
