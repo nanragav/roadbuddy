@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 const SimpleHome = () => {
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -61,10 +62,17 @@ const SimpleHome = () => {
             {/* Hero Image/GIF - Slightly Larger */}
             <div className="flex justify-center">
               <div className="relative">
+                {!imageLoaded && (
+                  <div className="w-full max-w-xl h-64 rounded-2xl bg-gray-300 animate-pulse"></div>
+                )}
                 <img
                   src="/HomePage.gif"
                   alt="RoadBuddy Services in Action"
-                  className="w-full max-w-xl rounded-2xl shadow-2xl"
+                  className={`w-full max-w-xl rounded-2xl shadow-2xl transition-opacity duration-500 ${
+                    imageLoaded ? "opacity-100" : "opacity-0"
+                  }`}
+                  onLoad={() => setImageLoaded(true)}
+                  onError={() => setImageLoaded(true)}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
               </div>
