@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, Phone, Mail } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,7 +95,12 @@ const Header = () => {
 
             {/* CTA Button */}
             <div className="hidden lg:flex items-center space-x-4">
-              <button className="btn-primary">Get Help Now</button>
+              <button
+                onClick={() => navigate("/contact")}
+                className="btn-primary"
+              >
+                Get Help Now
+              </button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -126,7 +132,12 @@ const Header = () => {
                     {link.label}
                   </Link>
                 ))}
-                <button className="btn-primary mt-4">Get Help Now</button>
+                <button
+                  onClick={() => navigate("/contact")}
+                  className="btn-primary mt-4"
+                >
+                  Get Help Now
+                </button>
               </nav>
             </div>
           </div>

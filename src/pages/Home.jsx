@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Car,
   Wrench,
@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const services = [
     {
       icon: Car,
@@ -103,7 +105,10 @@ const Home = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <button className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <button
+                  onClick={() => navigate("/contact")}
+                  className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
                   <div className="flex items-center justify-center space-x-2">
                     <Phone size={20} />
                     <span>Get Help Now</span>
