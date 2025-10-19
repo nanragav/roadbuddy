@@ -111,7 +111,7 @@ const Services = () => {
                 onClick={handleAppStoreClick}
                 className="bg-black hover:bg-gray-800 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-3"
               >
-                <span className="text-2xl">📱</span>
+                <img src="/app-store.svg" alt="App Store" className="w-8 h-8" />
                 <div className="text-left">
                   <div className="text-xs opacity-80">Download on the</div>
                   <div className="text-lg">App Store</div>
@@ -121,7 +121,11 @@ const Services = () => {
                 onClick={handleAppStoreClick}
                 className="bg-black hover:bg-gray-800 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-3"
               >
-                <span className="text-2xl">📱</span>
+                <img
+                  src="/google-play.svg"
+                  alt="Google Play"
+                  className="w-8 h-8"
+                />
                 <div className="text-left">
                   <div className="text-xs opacity-80">Get it on</div>
                   <div className="text-lg">Google Play</div>
