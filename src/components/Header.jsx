@@ -5,6 +5,7 @@ import { Menu, X, Phone, Mail } from "lucide-react";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -31,17 +32,28 @@ const Header = () => {
       <div className="bg-primary-900 text-white py-2 px-4">
         <div className="container-custom flex justify-between items-center text-sm">
           <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
+            <a
+              href="tel:+15551234567"
+              className="flex items-center space-x-2 hover:text-blue-300 transition-colors"
+            >
               <Phone size={14} />
               <span>+1 (555) 123-4567</span>
-            </div>
-            <div className="flex items-center space-x-2">
+            </a>
+            <a
+              href="mailto:help@roadbuddy.com"
+              className="flex items-center space-x-2 hover:text-blue-300 transition-colors"
+            >
               <Mail size={14} />
               <span>help@roadbuddy.com</span>
-            </div>
+            </a>
           </div>
           <div className="hidden md:block">
-            <span>24/7 Emergency Road Assistance</span>
+            <button
+              onClick={() => setShowPopup(true)}
+              className="hover:text-blue-300 transition-colors cursor-pointer"
+            >
+              <span>24/7 Emergency Road Assistance</span>
+            </button>
           </div>
         </div>
       </div>
@@ -143,6 +155,46 @@ const Header = () => {
           </div>
         )}
       </header>
+
+      {/* Popup Modal */}
+      {showPopup && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-8 max-w-md mx-4 shadow-2xl">
+            <div className="text-center">
+              <div className="mb-4">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg
+                    className="w-8 h-8 text-blue-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Coming Soon!
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  This feature is under development. Keep joined to stay
+                  updated.
+                </p>
+              </div>
+              <button
+                onClick={() => setShowPopup(false)}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-200"
+              >
+                Got it
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
