@@ -95,27 +95,27 @@ const DriverPage = () => {
 
   const testimonials = [
     {
-      name: "Mike Rodriguez",
-      role: "Senior Driver",
-      tenure: "3 Years",
+      name: "Ramesh Kumar",
+      role: "Aspiring Professional Driver",
+      tenure: "Joining Soon",
       quote:
-        "Best job I've ever had. Great pay, flexible schedule, and I love helping people in their time of need.",
+        "I'm excited to join RoadBuddy as a professional driver. The comprehensive insurance coverage and focus on safety give me confidence in providing reliable transportation services.",
       rating: 5,
     },
     {
-      name: "Sarah Johnson",
-      role: "Lead Driver",
-      tenure: "2 Years",
+      name: "Lakshmi Priya",
+      role: "Future RoadBuddy Driver",
+      tenure: "Pre-Launch Member",
       quote:
-        "RoadBuddy invested in my training and helped me advance my career. The team is like family.",
+        "RoadBuddy's approach to professional transportation with insured rides appeals to me. I look forward to providing safe, reliable service once we launch.",
       rating: 5,
     },
     {
-      name: "Carlos Martinez",
-      role: "Driver",
-      tenure: "1 Year",
+      name: "Suresh Babu",
+      role: "Professional Driver Applicant",
+      tenure: "Team Member",
       quote:
-        "Perfect for someone who wants independence while being part of a supportive team.",
+        "The rigorous background checks and professional standards show RoadBuddy's commitment to quality. I'm proud to be part of the founding driver team.",
       rating: 5,
     },
   ];
@@ -157,9 +157,9 @@ const DriverPage = () => {
                 <span className="text-yellow-400">Career Forward</span>
               </h1>
               <p className="text-xl lg:text-2xl mb-8 opacity-90 leading-relaxed">
-                Join RoadBuddy's team of professional drivers and make a
-                difference while earning great money with flexible schedules.
-                Our streamlined 3-step application process gets you started
+                Join RoadBuddy's founding team of professional drivers and be
+                ready to provide exceptional transportation services when we
+                launch. Our streamlined application process gets you prepared
                 quickly.
               </p>
 
@@ -309,7 +309,8 @@ const DriverPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Hear from real RoadBuddy drivers about their experience
+              Hear from drivers who are joining our founding team and preparing
+              to provide exceptional transportation services
             </p>
           </div>
 
@@ -360,7 +361,7 @@ const DriverPage = () => {
             </h2>
             <p className="text-xl text-gray-600">
               Complete our comprehensive 5-step application process designed for
-              Indian drivers
+              Tamil Nadu drivers joining our founding team
             </p>
           </div>
 
@@ -414,9 +415,9 @@ const DriverPage = () => {
               Ready to Start Your Journey?
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join hundreds of drivers who have found their perfect career with
-              RoadBuddy. Our quick 3-step application process makes it easy to
-              get started today.
+              Be among the first professional drivers to join RoadBuddy's
+              founding team. Our comprehensive application process ensures we
+              build a team of the highest quality drivers ready for launch.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button

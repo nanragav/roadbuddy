@@ -144,18 +144,18 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
   ];
 
   const preferredAreas = [
-    "Delhi NCR",
-    "Mumbai",
-    "Bangalore",
     "Chennai",
-    "Hyderabad",
-    "Pune",
-    "Kolkata",
-    "Ahmedabad",
-    "Jaipur",
-    "Surat",
-    "Lucknow",
-    "Kanpur",
+    "Coimbatore",
+    "Madurai",
+    "Tiruchirappalli",
+    "Salem",
+    "Tirunelveli",
+    "Tiruppur",
+    "Vellore",
+    "Erode",
+    "Thoothukudi",
+    "Tanjore",
+    "Kanyakumari",
   ];
 
   const handleInputChange = (field, value) => {
