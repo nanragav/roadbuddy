@@ -25,33 +25,6 @@ const About = () => {
     },
   ];
 
-  const team = [
-    {
-      name: "Michael Rodriguez",
-      role: "Founder & CEO",
-      bio: "Visionary entrepreneur dedicated to revolutionizing travel assistance through technology",
-      image: "👨‍💼",
-    },
-    {
-      name: "Sarah Chen",
-      role: "Chief Technology Officer",
-      bio: "Tech expert focused on building seamless mobile experiences for travelers",
-      image: "👩‍�",
-    },
-    {
-      name: "David Thompson",
-      role: "Head of Professional Network",
-      bio: "Ensures all mechanics and drivers meet our rigorous verification standards",
-      image: "👨‍🔧",
-    },
-    {
-      name: "Lisa Martinez",
-      role: "Customer Experience Director",
-      bio: "Dedicated to ensuring every traveler receives exceptional service and support",
-      image: "👩‍💼",
-    },
-  ];
-
   const values = [
     {
       icon: "👥",
@@ -225,41 +198,6 @@ const About = () => {
                 <p className="text-gray-600 leading-relaxed">
                   {value.description}
                 </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-heading">
-              Meet Our{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-                Team
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              The experienced professionals behind RoadBuddy's success
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 text-center"
-              >
-                <div className="text-8xl mb-6">{member.image}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  {member.name}
-                </h3>
-                <p className="text-blue-600 font-semibold mb-4">
-                  {member.role}
-                </p>
-                <p className="text-gray-600 leading-relaxed">{member.bio}</p>
               </div>
             ))}
           </div>
