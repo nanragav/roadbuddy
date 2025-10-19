@@ -452,6 +452,9 @@ const DriverPage = () => {
               </button>
               <Link
                 to="/contact"
+                onClick={() =>
+                  window.scrollTo({ top: 0, left: 0, behavior: "instant" })
+                }
                 className="border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
               >
                 <span>Have Questions?</span>
