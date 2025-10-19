@@ -47,35 +47,39 @@ const DriverPage = () => {
 
   const requirements = [
     {
-      category: "Licensing",
+      category: "Personal Documents",
       items: [
-        "Valid driver's license (2+ years)",
-        "Clean driving record required",
-        "No major violations in 3 years",
+        "Valid Aadhar Card (original required)",
+        "PAN Card (optional but recommended)",
+        "Passport size photograph",
+        "Emergency contact information",
       ],
     },
     {
-      category: "Experience",
+      category: "Driving License",
       items: [
-        "Safe driving experience preferred",
-        "Customer service background",
-        "Professional transportation knowledge",
+        "Valid Indian driving license",
+        "Minimum 1-2 years experience",
+        "Clean driving record preferred",
+        "License expiry date validation",
       ],
     },
     {
-      category: "Skills",
+      category: "Documents Upload",
       items: [
-        "Excellent communication skills",
-        "GPS and navigation proficiency",
-        "Professional demeanor",
+        "Aadhar Card (front & back)",
+        "Driving License (front & back)",
+        "Recent passport size photo",
+        "Police verification (optional)",
       ],
     },
     {
-      category: "Background",
+      category: "Payment Setup",
       items: [
-        "Background check required",
-        "Reference verification",
-        "Insurance eligibility confirmation",
+        "Valid UPI ID for payments",
+        "Bank account details",
+        "IFSC code verification",
+        "Account holder name confirmation",
       ],
     },
   ];
