@@ -78,7 +78,7 @@ const Footer = () => {
               <img
                 src="/RB_Logo.png"
                 alt="RoadBuddy Logo"
-                className="h-10 w-auto filter brightness-0 invert"
+                className="h-10 w-auto"
               />
               <div>
                 <h3 className="text-2xl font-bold">RoadBuddy</h3>
