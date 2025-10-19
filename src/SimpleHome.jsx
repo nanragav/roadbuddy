@@ -33,7 +33,10 @@ const SimpleHome = () => {
                 >
                   📞 Get Help Now
                 </button>
-                <button className="border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
+                <button
+                  onClick={() => navigate("/services")}
+                  className="border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
+                >
                   Our Services
                 </button>
               </div>
