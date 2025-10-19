@@ -4,6 +4,7 @@ import DriverRegistrationForm from "../components/DriverRegistrationForm";
 
 const DriverPage = () => {
   const [showDriverForm, setShowDriverForm] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const benefits = [
     {
@@ -175,10 +176,17 @@ const DriverPage = () => {
 
             <div className="flex justify-center">
               <div className="relative">
+                {!imageLoaded && (
+                  <div className="w-full max-w-lg h-64 rounded-2xl bg-gray-300 animate-pulse"></div>
+                )}
                 <img
-                  src="/RB Files/DriverPage.gif"
+                  src="/DriverPage.gif"
                   alt="RoadBuddy Driver in Action"
-                  className="w-full max-w-lg rounded-2xl shadow-2xl"
+                  className={`w-full max-w-lg rounded-2xl shadow-2xl transition-opacity duration-500 ${
+                    imageLoaded ? "opacity-100" : "opacity-0"
+                  }`}
+                  onLoad={() => setImageLoaded(true)}
+                  onError={() => setImageLoaded(true)}
                 />
                 <div className="absolute inset-0 rounded-2xl ring-4 ring-yellow-400/50"></div>
               </div>
