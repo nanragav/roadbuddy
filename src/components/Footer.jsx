@@ -101,7 +101,10 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3 text-gray-400">
                 <MapPin size={18} className="text-primary-400" />
-                <span>123 Main Street, City, State 12345</span>
+                <span>
+                  9/336, Pasumpon Nagar, Vadugapalayam, Pollachi, Coimbatore -
+                  642005
+                </span>
               </div>
             </div>
           </div>
