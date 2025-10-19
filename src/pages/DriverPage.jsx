@@ -122,24 +122,44 @@ const DriverPage = () => {
 
   const faqs = [
     {
-      question: "What are the working hours?",
+      question: "How does the insurance coverage work for drivers?",
       answer:
-        "We offer flexible scheduling to match your availability. Choose from morning, afternoon, evening, or weekend shifts based on client demand.",
+        "Every ride is fully insured for both the driver and client. RoadBuddy provides comprehensive coverage including personal accident insurance, vehicle damage protection, and liability coverage that activates automatically when you accept a booking.",
     },
     {
-      question: "Do I need my own vehicle?",
+      question: "Do I need my own vehicle to join RoadBuddy?",
       answer:
-        "No vehicle required! You'll operate clients' vehicles for their transportation needs, providing professional driving services.",
+        "No vehicle required! You'll professionally operate clients' vehicles for their transportation needs. This allows you to focus on driving while we handle all vehicle-related logistics and insurance.",
     },
     {
-      question: "What type of training do you provide?",
+      question: "What are the requirements to become a RoadBuddy driver?",
       answer:
-        "Comprehensive training program covering safe driving practices, customer service excellence, GPS navigation, and emergency procedures.",
+        "You need a valid Indian driving license (minimum 2 years), clean driving record, Aadhar card, PAN card, and must pass our comprehensive background verification. Professional demeanor and customer service skills are essential.",
     },
     {
-      question: "How much can I earn?",
+      question: "Which areas in Tamil Nadu will I be working in?",
       answer:
-        "Earnings range from ₹99-129 per ride depending on distance and duration, with opportunities for bonuses and frequent rider incentives.",
+        "We're initially launching in major Tamil Nadu cities including Chennai, Coimbatore, Madurai, Trichy, and other key districts. Drivers can specify their preferred service areas during registration.",
+    },
+    {
+      question: "How much can I earn as a RoadBuddy driver?",
+      answer:
+        "Earnings range from ₹99-129 per ride depending on distance and duration. Additional incentives include bonuses for high ratings, frequent service, and peak hour availability. Direct UPI payments ensure quick settlements.",
+    },
+    {
+      question: "What safety measures does RoadBuddy provide?",
+      answer:
+        "We prioritize safety with GPS tracking, emergency SOS buttons in all partnered vehicles, 24/7 support, and mandatory safety training. All rides are monitored and drivers undergo regular safety assessments.",
+    },
+    {
+      question: "When will RoadBuddy officially launch?",
+      answer:
+        "We're currently building our founding driver team and preparing for launch in Tamil Nadu. Selected drivers will receive priority access and special founding member benefits when we go live.",
+    },
+    {
+      question: "What happens if there's an accident or vehicle damage?",
+      answer:
+        "All incidents are covered by our comprehensive insurance. RoadBuddy handles all claims, vehicle repairs, and legal proceedings. Drivers are protected as long as they follow safety protocols and driving guidelines.",
     },
   ];
 
