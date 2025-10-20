@@ -107,6 +107,14 @@ const Services = () => {
 
             {/* App Store Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+              <div className="text-center mb-4">
+                <h3 className="text-2xl font-bold mb-2">
+                  Download RoadBuddy App
+                </h3>
+                <p className="text-white/80">
+                  For customers seeking roadside assistance and transportation
+                </p>
+              </div>
               <button
                 onClick={handleAppStoreClick}
                 className="bg-black hover:bg-gray-800 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-3"

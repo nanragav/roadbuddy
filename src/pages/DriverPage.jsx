@@ -366,6 +366,79 @@ const DriverPage = () => {
         </div>
       </section>
 
+      {/* Driver App Download */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-heading">
+              Download{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                RB Fleet
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+              Get the official RoadBuddy driver app to manage your rides, track
+              earnings, and stay connected with our platform
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              {/* App Store Button */}
+              <div className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-100">
+                <button className="flex items-center space-x-4 w-full">
+                  <div className="bg-black rounded-xl p-3">
+                    <img
+                      src="/app-store.svg"
+                      alt="App Store"
+                      className="w-8 h-8"
+                    />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-sm text-gray-500">Download on the</div>
+                    <div className="text-xl font-bold text-gray-900">
+                      App Store
+                    </div>
+                    <div className="text-sm text-blue-600 font-semibold">
+                      RB Fleet
+                    </div>
+                  </div>
+                </button>
+              </div>
+
+              {/* Google Play Button */}
+              <div className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-100">
+                <button className="flex items-center space-x-4 w-full">
+                  <div className="bg-black rounded-xl p-3">
+                    <img
+                      src="/google-play.svg"
+                      alt="Google Play"
+                      className="w-8 h-8"
+                    />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-sm text-gray-500">Get it on</div>
+                    <div className="text-xl font-bold text-gray-900">
+                      Google Play
+                    </div>
+                    <div className="text-sm text-blue-600 font-semibold">
+                      RB Fleet
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <div className="mt-8 text-center">
+              <p className="text-gray-600">
+                <span className="font-semibold text-blue-600">
+                  Coming Soon:
+                </span>{" "}
+                Available for download when we launch our driver platform
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Application Form */}
       <section
         id="application-form"

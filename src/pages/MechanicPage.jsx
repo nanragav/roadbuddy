@@ -62,16 +62,16 @@ const MechanicPage = () => {
       details: "Competitive rates based on service complexity",
     },
     {
-      icon: "🛠️",
-      title: "Professional Tools",
-      description: "State-of-the-art equipment",
-      details: "All diagnostic tools and equipment provided",
+      icon: "📱",
+      title: "Flexible Work",
+      description: "Work on your schedule",
+      details: "Accept jobs that fit your availability through our app",
     },
     {
-      icon: "🚐",
-      title: "Mobile Workshop",
-      description: "Fully equipped service vans",
-      details: "Complete mobile workshop with everything you need",
+      icon: "📍",
+      title: "Local Service Area",
+      description: "Serve your community",
+      details: "Work in Tamil Nadu areas you're familiar with",
     },
     {
       icon: "📚",
@@ -174,49 +174,49 @@ const MechanicPage = () => {
       icon: "🔧",
       title: "Engine Repair",
       description: "Complete engine diagnostics and repair",
-      tools: "OBD-II scanners, compression testers, timing tools",
+      details: "Engine performance, diagnostics, timing, and major repairs",
     },
     {
       icon: "🛞",
       title: "Brake Systems",
       description: "Brake repair and maintenance",
-      tools: "Brake lathes, calipers, hydraulic systems",
+      details: "Brake pads, rotors, calipers, and hydraulic systems",
     },
     {
       icon: "⚡",
       title: "Electrical Systems",
       description: "Modern vehicle electronics",
-      tools: "Multimeters, oscilloscopes, programming tools",
+      details: "Battery, alternator, wiring, and electronic diagnostics",
     },
     {
       icon: "❄️",
       title: "AC & Climate",
       description: "HVAC system repair",
-      tools: "AC machines, refrigerant recovery, leak detectors",
+      details: "Air conditioning, heating, and climate control systems",
     },
     {
       icon: "🔄",
       title: "Transmission",
       description: "Automatic and manual transmission service",
-      tools: "Transmission jacks, diagnostic software, rebuild kits",
+      details: "Transmission repair, fluid changes, and diagnostics",
     },
     {
       icon: "🪜",
       title: "Suspension & Steering",
       description: "Alignment and suspension repair",
-      tools: "Alignment machines, strut compressors, ball joint tools",
+      details: "Shocks, struts, alignment, and steering components",
     },
     {
       icon: "🔋",
       title: "Battery & Electrical",
       description: "Battery testing and electrical repairs",
-      tools: "Battery testers, wiring harnesses, alternators",
+      details: "Battery replacement, charging systems, and electrical issues",
     },
     {
       icon: "🚗",
       title: "General Maintenance",
       description: "Oil changes, filters, and routine service",
-      tools: "Oil extractors, filter wrenches, service equipment",
+      details: "Preventive maintenance, fluid changes, and inspections",
     },
   ];
 
@@ -229,17 +229,17 @@ const MechanicPage = () => {
     {
       question: "Do I need my own tools?",
       answer:
-        "Basic hand tools are helpful, but we provide all diagnostic equipment, specialty tools, and heavy equipment in our mobile workshops.",
+        "Yes, you need your own tools and equipment. RoadBuddy connects you with customers through our app, but you provide your own tools and transportation to service locations.",
     },
     {
       question: "What is the work schedule like?",
       answer:
-        "We offer flexible scheduling with day, evening, and weekend shifts available. Emergency calls may require occasional overtime at premium rates.",
+        "You set your own schedule! Accept service requests that fit your availability through our app. Work as much or as little as you want.",
     },
     {
       question: "How much can I earn?",
       answer:
-        "You can earn ₹99-129 per service depending on complexity, plus bonuses for completed jobs and potential overtime opportunities.",
+        "You can earn ₹99-129 per service depending on complexity. RoadBuddy takes a commission, and you keep the rest as your earnings.",
     },
     {
       question: "What training do you provide?",
@@ -364,7 +364,8 @@ const MechanicPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Work with modern equipment on diverse automotive systems
+              Choose your areas of expertise and serve customers in your
+              community
             </p>
           </div>
 
@@ -380,7 +381,7 @@ const MechanicPage = () => {
                     {service.title}
                   </h3>
                   <p className="text-gray-600 mb-3">{service.description}</p>
-                  <p className="text-sm text-blue-600">{service.tools}</p>
+                  <p className="text-sm text-blue-600">{service.details}</p>
                 </div>
               </div>
             ))}
@@ -470,6 +471,79 @@ const MechanicPage = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Mechanic App Download */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-heading">
+              Download{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                RB Fix
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+              Get the official RoadBuddy mechanic app to manage your service
+              requests, track earnings, and grow your business with our platform
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              {/* App Store Button */}
+              <div className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-100">
+                <button className="flex items-center space-x-4 w-full">
+                  <div className="bg-black rounded-xl p-3">
+                    <img
+                      src="/app-store.svg"
+                      alt="App Store"
+                      className="w-8 h-8"
+                    />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-sm text-gray-500">Download on the</div>
+                    <div className="text-xl font-bold text-gray-900">
+                      App Store
+                    </div>
+                    <div className="text-sm text-blue-600 font-semibold">
+                      RB Fix
+                    </div>
+                  </div>
+                </button>
+              </div>
+
+              {/* Google Play Button */}
+              <div className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-100">
+                <button className="flex items-center space-x-4 w-full">
+                  <div className="bg-black rounded-xl p-3">
+                    <img
+                      src="/google-play.svg"
+                      alt="Google Play"
+                      className="w-8 h-8"
+                    />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-sm text-gray-500">Get it on</div>
+                    <div className="text-xl font-bold text-gray-900">
+                      Google Play
+                    </div>
+                    <div className="text-sm text-blue-600 font-semibold">
+                      RB Fix
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <div className="mt-8 text-center">
+              <p className="text-gray-600">
+                <span className="font-semibold text-blue-600">
+                  Coming Soon:
+                </span>{" "}
+                Available for download when we launch our mechanic platform
+              </p>
+            </div>
           </div>
         </div>
       </section>
