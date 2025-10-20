@@ -9,69 +9,86 @@ const MechanicPage = () => {
   const benefits = [
     {
       icon: "🛡️",
-      title: "Comprehensive Insurance",
-      description: "Per service coverage",
-      details: "Full protection for every job you complete",
+      title: "Job Protection",
+      description: "Insurance coverage for every service",
+      details: "Full liability protection when working on client vehicles",
     },
     {
       icon: "💰",
-      title: "Excellent Earnings",
-      description: "₹99-129 per service",
-      details: "Competitive rates based on service complexity",
+      title: "Variable Earnings",
+      description: "Pay based on service type and complexity",
+      details: "₹150-300 per call - simple repairs to complex diagnostics",
     },
     {
       icon: "📱",
-      title: "Flexible Work",
-      description: "Work on your schedule",
-      details: "Accept jobs that fit your availability through our app",
+      title: "Flexible Schedule",
+      description: "Choose when you want to work",
+      details: "Accept jobs that fit your availability through our platform",
     },
     {
       icon: "📍",
-      title: "Local Service Area",
-      description: "Serve your community",
-      details: "Work in Tamil Nadu areas you're familiar with",
+      title: "Local Service Calls",
+      description: "Work in your familiar areas",
+      details: "Service customers in Tamil Nadu regions you know best",
     },
     {
-      icon: "📚",
-      title: "Continuous Training",
-      description: "Latest technology updates",
-      details: "Ongoing certification and skill development",
+      icon: "�",
+      title: "Skill Development",
+      description: "Access to latest diagnostic tools",
+      details: "Training on new vehicle technologies and repair techniques",
     },
     {
       icon: "🎯",
-      title: "Career Advancement",
-      description: "Lead technician opportunities",
-      details: "Clear path to senior and management roles",
+      title: "Professional Growth",
+      description: "Build your reputation and client base",
+      details: "Quality ratings system helps you earn premium rates",
     },
   ];
 
   const requirements = [
     {
       category: "Personal Documents",
-      items: ["Valid Aadhar Card", "PAN Card", "Recent passport-size photos"],
-    },
-    {
-      category: "Driving License",
       items: [
-        "Valid driving license",
-        "LMV (Light Motor Vehicle) license",
-        "Clean driving record",
+        "Valid Aadhar Card (front & back copy)",
+        "PAN Card (required)",
+        "Recent passport size photograph",
+        "Emergency contact information",
       ],
     },
     {
-      category: "Background Checks",
+      category: "Professional Experience",
       items: [
-        "Criminal background verification",
-        "Police clearance certificate",
-        "Reference checks",
+        "1+ years automotive repair experience",
+        "Specialization in repair areas (engine, brakes, electrical, etc.)",
+        "Language skills (Hindi, English, regional languages)",
+        "Professional certifications (optional but preferred)",
       ],
     },
     {
-      category: "Skills & Experience",
+      category: "Documents Upload",
       items: [
-        "2+ years automotive repair experience",
-        "Basic mechanical knowledge",
-        "Customer service skills",
+        "Aadhar card (both sides scan/photo)",
+        "PAN card clear image",
+        "Driving license (front & back)",
+        "Professional photo for profile",
+      ],
+    },
+    {
+      category: "Payment Setup",
+      items: [
+        "Valid UPI ID for payments",
+        "Bank account details",
+        "IFSC code verification",
+        "Account holder name confirmation",
+      ],
+    },
+    {
+      category: "Work Preferences",
+      items: [
+        "Flexible work timing options",
+        "Own tools availability (basic toolkit preferred)",
+        "Service area preferences",
+        "Mobile number with OTP verification",
       ],
     },
   ];
@@ -281,8 +298,8 @@ const MechanicPage = () => {
               ?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We provide the tools, training, and environment for automotive
-              professionals to excel
+              Join our network of skilled mechanics and start earning with
+              flexible, well-paying service opportunities
             </p>
           </div>
 
