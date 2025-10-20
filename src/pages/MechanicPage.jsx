@@ -50,10 +50,16 @@ const MechanicPage = () => {
 
   const benefits = [
     {
+      icon: "🛡️",
+      title: "Comprehensive Insurance",
+      description: "Per service coverage",
+      details: "Full protection for every job you complete",
+    },
+    {
       icon: "💰",
-      title: "Excellent Pay",
-      description: "$35-60/hour + overtime",
-      details: "Premium rates for certified technicians",
+      title: "Excellent Earnings",
+      description: "₹99-129 per service",
+      details: "Competitive rates based on service complexity",
     },
     {
       icon: "🛠️",
@@ -66,12 +72,6 @@ const MechanicPage = () => {
       title: "Mobile Workshop",
       description: "Fully equipped service vans",
       details: "Complete mobile workshop with everything you need",
-    },
-    {
-      icon: "🏥",
-      title: "Premium Benefits",
-      description: "Health, dental, vision, 401k",
-      details: "Comprehensive benefits package",
     },
     {
       icon: "📚",
@@ -89,35 +89,31 @@ const MechanicPage = () => {
 
   const requirements = [
     {
-      category: "Certifications",
+      category: "Personal Documents",
+      items: ["Valid Aadhar Card", "PAN Card", "Recent passport-size photos"],
+    },
+    {
+      category: "Driving License",
       items: [
-        "ASE Certification (A1-A8)",
-        "State inspection license",
-        "Manufacturer certifications preferred",
+        "Valid driving license",
+        "LMV (Light Motor Vehicle) license",
+        "Clean driving record",
       ],
     },
     {
-      category: "Experience",
+      category: "Background Checks",
       items: [
-        "3+ years automotive repair",
-        "Diagnostic experience required",
-        "Mobile service preferred",
+        "Criminal background verification",
+        "Police clearance certificate",
+        "Reference checks",
       ],
     },
     {
-      category: "Skills",
+      category: "Skills & Experience",
       items: [
-        "Engine diagnostics",
-        "Electrical systems",
-        "Customer communication",
-      ],
-    },
-    {
-      category: "Tools",
-      items: [
-        "Basic hand tools required",
-        "Diagnostic equipment (we provide)",
-        "Valid driver's license",
+        "2+ years automotive repair experience",
+        "Basic mechanical knowledge",
+        "Customer service skills",
       ],
     },
   ];
@@ -148,27 +144,27 @@ const MechanicPage = () => {
 
   const testimonials = [
     {
-      name: "Robert Chen",
-      role: "Senior Technician",
-      tenure: "4 Years",
+      name: "Arun Kumar",
+      role: "Certified Mechanic",
+      tenure: "Joining Soon",
       quote:
-        "The best decision I made was joining RoadBuddy. Great pay, modern equipment, and supportive management.",
+        "I'm excited to join RoadBuddy and serve Chennai with professional mobile repair services. The comprehensive insurance and good earnings make this opportunity perfect.",
       rating: 5,
     },
     {
-      name: "Maria Gonzalez",
-      role: "Lead Mechanic",
-      tenure: "2.5 Years",
+      name: "Priya Sharma",
+      role: "Auto Technician",
+      tenure: "Pre-Launch Member",
       quote:
-        "I love the challenge of mobile repair and helping customers on-site. The training opportunities are excellent.",
+        "The training programs and modern equipment at RoadBuddy will help me provide excellent service to Coimbatore customers. Looking forward to the launch!",
       rating: 5,
     },
     {
-      name: "James Wilson",
-      role: "Diagnostic Specialist",
-      tenure: "3 Years",
+      name: "Rajesh Patel",
+      role: "Mobile Mechanic",
+      tenure: "Ready to Start",
       quote:
-        "Working with the latest diagnostic equipment and solving complex problems makes every day interesting.",
+        "With RoadBuddy's support and the ₹99-129 per service rate, I can focus on quality repairs while building a sustainable career in Madurai.",
       rating: 5,
     },
   ];
@@ -176,21 +172,21 @@ const MechanicPage = () => {
   const serviceTypes = [
     {
       icon: "🔧",
-      title: "Engine Diagnostics",
-      description: "Advanced diagnostic services",
-      tools: "OBD-II scanners, multimeters, oscilloscopes",
+      title: "Engine Repair",
+      description: "Complete engine diagnostics and repair",
+      tools: "OBD-II scanners, compression testers, timing tools",
     },
     {
       icon: "🛞",
-      title: "Brake & Suspension",
-      description: "Safety-critical systems",
-      tools: "Brake lathes, alignment tools, hydraulic lifts",
+      title: "Brake Systems",
+      description: "Brake repair and maintenance",
+      tools: "Brake lathes, calipers, hydraulic systems",
     },
     {
       icon: "⚡",
       title: "Electrical Systems",
       description: "Modern vehicle electronics",
-      tools: "Wiring diagrams, electrical testers, programming tools",
+      tools: "Multimeters, oscilloscopes, programming tools",
     },
     {
       icon: "❄️",
@@ -198,18 +194,42 @@ const MechanicPage = () => {
       description: "HVAC system repair",
       tools: "AC machines, refrigerant recovery, leak detectors",
     },
+    {
+      icon: "🔄",
+      title: "Transmission",
+      description: "Automatic and manual transmission service",
+      tools: "Transmission jacks, diagnostic software, rebuild kits",
+    },
+    {
+      icon: "🪜",
+      title: "Suspension & Steering",
+      description: "Alignment and suspension repair",
+      tools: "Alignment machines, strut compressors, ball joint tools",
+    },
+    {
+      icon: "🔋",
+      title: "Battery & Electrical",
+      description: "Battery testing and electrical repairs",
+      tools: "Battery testers, wiring harnesses, alternators",
+    },
+    {
+      icon: "🚗",
+      title: "General Maintenance",
+      description: "Oil changes, filters, and routine service",
+      tools: "Oil extractors, filter wrenches, service equipment",
+    },
   ];
 
   const faqs = [
     {
-      question: "What certifications do I need?",
+      question: "What documents do I need to apply?",
       answer:
-        "ASE certification is required, with A1-A8 preferred. We also value manufacturer certifications and state inspection licenses.",
+        "You'll need a valid Aadhar Card, PAN Card, driving license, and recent passport-size photos. Background verification will be conducted during the application process.",
     },
     {
       question: "Do I need my own tools?",
       answer:
-        "Basic hand tools are required, but we provide all diagnostic equipment, specialty tools, and heavy equipment in our mobile workshops.",
+        "Basic hand tools are helpful, but we provide all diagnostic equipment, specialty tools, and heavy equipment in our mobile workshops.",
     },
     {
       question: "What is the work schedule like?",
@@ -219,12 +239,12 @@ const MechanicPage = () => {
     {
       question: "How much can I earn?",
       answer:
-        "Starting at $35/hour for certified techs, up to $60/hour for senior specialists, plus overtime, bonuses, and benefits.",
+        "You can earn ₹99-129 per service depending on complexity, plus bonuses for completed jobs and potential overtime opportunities.",
     },
     {
       question: "What training do you provide?",
       answer:
-        "Complete onboarding, ongoing manufacturer training, new technology updates, and support for additional certifications.",
+        "Complete onboarding, ongoing manufacturer training, new technology updates, and support for additional certifications to help you grow your skills.",
     },
   ];
 
