@@ -119,27 +119,27 @@ const MechanicPage = () => {
 
   const testimonials = [
     {
-      name: "Arun Kumar",
-      role: "Certified Mechanic",
+      name: "Murugan S",
+      role: "Senior Auto Mechanic",
       tenure: "Joining Soon",
       quote:
-        "I'm excited to join RoadBuddy and serve Chennai with professional mobile repair services. The comprehensive insurance and good earnings make this opportunity perfect.",
+        "RoadBuddy-ல் join பண்ணுறதுக்கு excited ஆ இருக்கேன். Chennai-ல் customers-க்கு quality service கொடுக்க முடியும், அதுவும் good earnings-ம் இருக்கு. Insurance coverage-ம் நல்லா இருக்கு.",
       rating: 5,
     },
     {
-      name: "Priya Sharma",
-      role: "Auto Technician",
+      name: "Karthik Raj",
+      role: "Automotive Technician",
       tenure: "Pre-Launch Member",
       quote:
-        "The training programs and modern equipment at RoadBuddy will help me provide excellent service to Coimbatore customers. Looking forward to the launch!",
+        "15 வருஷமா mechanic work பண்றேன். RoadBuddy platform-ல் work flexible ஆ இருக்கு, earnings-ம் நல்லா இருக்கு. Coimbatore area-ல் customers-க்கு best service provide பண்ண ready ஆ இருக்கேன்.",
       rating: 5,
     },
     {
-      name: "Rajesh Patel",
-      role: "Mobile Mechanic",
-      tenure: "Ready to Start",
+      name: "Ravi Shankar",
+      role: "Mobile Mechanic Specialist",
+      tenure: "Ready to Launch",
       quote:
-        "With RoadBuddy's support and the ₹99-129 per service rate, I can focus on quality repairs while building a sustainable career in Madurai.",
+        "Madurai-ல் mechanic shop வச்சு work பண்ணிட்டிருந்தேன். இப்ப RoadBuddy-ல் mobile service கொடுத்து ₹200-300 per service earn பண்ண முடியும். Technology support-ம் nalla இருக்கு.",
       rating: 5,
     },
   ];
@@ -414,7 +414,8 @@ const MechanicPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Hear from experienced technicians about their RoadBuddy career
+              Hear from skilled mechanics across Tamil Nadu who are joining our
+              founding team to provide quality automotive services
             </p>
           </div>
 
