@@ -1,228 +1,239 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const MechanicPage = () => {
+  const [imageLoaded, setImageLoaded] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    city: '',
-    experience: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    city: "",
+    experience: "",
     certifications: [],
     specializations: [],
-    availability: 'full-time',
+    availability: "full-time",
     ownTools: false,
     backgroundCheck: false,
-    termsAccepted: false
-  })
+    termsAccepted: false,
+  });
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target
+    const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value
-    })
-  }
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
 
   const handleCheckboxGroup = (name, value, checked) => {
     if (checked) {
       setFormData({
         ...formData,
-        [name]: [...formData[name], value]
-      })
+        [name]: [...formData[name], value],
+      });
     } else {
       setFormData({
         ...formData,
-        [name]: formData[name].filter(item => item !== value)
-      })
+        [name]: formData[name].filter((item) => item !== value),
+      });
     }
-  }
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('Mechanic application submitted:', formData)
-    alert('Thank you for your application! We will review it and contact you within 48 hours.')
-  }
+    e.preventDefault();
+    console.log("Mechanic application submitted:", formData);
+    alert(
+      "Thank you for your application! We will review it and contact you within 48 hours."
+    );
+  };
 
   const benefits = [
     {
-      icon: '💰',
-      title: 'Excellent Pay',
-      description: '$35-60/hour + overtime',
-      details: 'Premium rates for certified technicians'
+      icon: "💰",
+      title: "Excellent Pay",
+      description: "$35-60/hour + overtime",
+      details: "Premium rates for certified technicians",
     },
     {
-      icon: '🛠️',
-      title: 'Professional Tools',
-      description: 'State-of-the-art equipment',
-      details: 'All diagnostic tools and equipment provided'
+      icon: "🛠️",
+      title: "Professional Tools",
+      description: "State-of-the-art equipment",
+      details: "All diagnostic tools and equipment provided",
     },
     {
-      icon: '🚐',
-      title: 'Mobile Workshop',
-      description: 'Fully equipped service vans',
-      details: 'Complete mobile workshop with everything you need'
+      icon: "🚐",
+      title: "Mobile Workshop",
+      description: "Fully equipped service vans",
+      details: "Complete mobile workshop with everything you need",
     },
     {
-      icon: '🏥',
-      title: 'Premium Benefits',
-      description: 'Health, dental, vision, 401k',
-      details: 'Comprehensive benefits package'
+      icon: "🏥",
+      title: "Premium Benefits",
+      description: "Health, dental, vision, 401k",
+      details: "Comprehensive benefits package",
     },
     {
-      icon: '📚',
-      title: 'Continuous Training',
-      description: 'Latest technology updates',
-      details: 'Ongoing certification and skill development'
+      icon: "📚",
+      title: "Continuous Training",
+      description: "Latest technology updates",
+      details: "Ongoing certification and skill development",
     },
     {
-      icon: '🎯',
-      title: 'Career Advancement',
-      description: 'Lead technician opportunities',
-      details: 'Clear path to senior and management roles'
-    }
-  ]
+      icon: "🎯",
+      title: "Career Advancement",
+      description: "Lead technician opportunities",
+      details: "Clear path to senior and management roles",
+    },
+  ];
 
   const requirements = [
     {
-      category: 'Certifications',
+      category: "Certifications",
       items: [
-        'ASE Certification (A1-A8)',
-        'State inspection license',
-        'Manufacturer certifications preferred'
-      ]
+        "ASE Certification (A1-A8)",
+        "State inspection license",
+        "Manufacturer certifications preferred",
+      ],
     },
     {
-      category: 'Experience',
+      category: "Experience",
       items: [
-        '3+ years automotive repair',
-        'Diagnostic experience required',
-        'Mobile service preferred'
-      ]
+        "3+ years automotive repair",
+        "Diagnostic experience required",
+        "Mobile service preferred",
+      ],
     },
     {
-      category: 'Skills',
+      category: "Skills",
       items: [
-        'Engine diagnostics',
-        'Electrical systems',
-        'Customer communication'
-      ]
+        "Engine diagnostics",
+        "Electrical systems",
+        "Customer communication",
+      ],
     },
     {
-      category: 'Tools',
+      category: "Tools",
       items: [
-        'Basic hand tools required',
-        'Diagnostic equipment (we provide)',
-        'Valid driver\'s license'
-      ]
-    }
-  ]
+        "Basic hand tools required",
+        "Diagnostic equipment (we provide)",
+        "Valid driver's license",
+      ],
+    },
+  ];
 
   const specializations = [
-    'Engine Repair',
-    'Transmission',
-    'Brake Systems',
-    'Electrical/Electronics',
-    'Air Conditioning',
-    'Suspension',
-    'Hybrid/Electric Vehicles',
-    'Diesel Engines'
-  ]
+    "Engine Repair",
+    "Transmission",
+    "Brake Systems",
+    "Electrical/Electronics",
+    "Air Conditioning",
+    "Suspension",
+    "Hybrid/Electric Vehicles",
+    "Diesel Engines",
+  ];
 
   const certificationOptions = [
-    'ASE A1 - Engine Repair',
-    'ASE A2 - Automatic Transmission',
-    'ASE A3 - Manual Drive Train',
-    'ASE A4 - Suspension & Steering',
-    'ASE A5 - Brakes',
-    'ASE A6 - Electrical/Electronic',
-    'ASE A7 - Heating & AC',
-    'ASE A8 - Engine Performance',
-    'State Inspection License',
-    'Manufacturer Certifications'
-  ]
+    "ASE A1 - Engine Repair",
+    "ASE A2 - Automatic Transmission",
+    "ASE A3 - Manual Drive Train",
+    "ASE A4 - Suspension & Steering",
+    "ASE A5 - Brakes",
+    "ASE A6 - Electrical/Electronic",
+    "ASE A7 - Heating & AC",
+    "ASE A8 - Engine Performance",
+    "State Inspection License",
+    "Manufacturer Certifications",
+  ];
 
   const testimonials = [
     {
-      name: 'Robert Chen',
-      role: 'Senior Technician',
-      tenure: '4 Years',
-      quote: 'The best decision I made was joining RoadBuddy. Great pay, modern equipment, and supportive management.',
-      rating: 5
+      name: "Robert Chen",
+      role: "Senior Technician",
+      tenure: "4 Years",
+      quote:
+        "The best decision I made was joining RoadBuddy. Great pay, modern equipment, and supportive management.",
+      rating: 5,
     },
     {
-      name: 'Maria Gonzalez',
-      role: 'Lead Mechanic',
-      tenure: '2.5 Years',
-      quote: 'I love the challenge of mobile repair and helping customers on-site. The training opportunities are excellent.',
-      rating: 5
+      name: "Maria Gonzalez",
+      role: "Lead Mechanic",
+      tenure: "2.5 Years",
+      quote:
+        "I love the challenge of mobile repair and helping customers on-site. The training opportunities are excellent.",
+      rating: 5,
     },
     {
-      name: 'James Wilson',
-      role: 'Diagnostic Specialist',
-      tenure: '3 Years',
-      quote: 'Working with the latest diagnostic equipment and solving complex problems makes every day interesting.',
-      rating: 5
-    }
-  ]
+      name: "James Wilson",
+      role: "Diagnostic Specialist",
+      tenure: "3 Years",
+      quote:
+        "Working with the latest diagnostic equipment and solving complex problems makes every day interesting.",
+      rating: 5,
+    },
+  ];
 
   const serviceTypes = [
     {
-      icon: '🔧',
-      title: 'Engine Diagnostics',
-      description: 'Advanced diagnostic services',
-      tools: 'OBD-II scanners, multimeters, oscilloscopes'
+      icon: "🔧",
+      title: "Engine Diagnostics",
+      description: "Advanced diagnostic services",
+      tools: "OBD-II scanners, multimeters, oscilloscopes",
     },
     {
-      icon: '🛞',
-      title: 'Brake & Suspension',
-      description: 'Safety-critical systems',
-      tools: 'Brake lathes, alignment tools, hydraulic lifts'
+      icon: "🛞",
+      title: "Brake & Suspension",
+      description: "Safety-critical systems",
+      tools: "Brake lathes, alignment tools, hydraulic lifts",
     },
     {
-      icon: '⚡',
-      title: 'Electrical Systems',
-      description: 'Modern vehicle electronics',
-      tools: 'Wiring diagrams, electrical testers, programming tools'
+      icon: "⚡",
+      title: "Electrical Systems",
+      description: "Modern vehicle electronics",
+      tools: "Wiring diagrams, electrical testers, programming tools",
     },
     {
-      icon: '❄️',
-      title: 'AC & Climate',
-      description: 'HVAC system repair',
-      tools: 'AC machines, refrigerant recovery, leak detectors'
-    }
-  ]
+      icon: "❄️",
+      title: "AC & Climate",
+      description: "HVAC system repair",
+      tools: "AC machines, refrigerant recovery, leak detectors",
+    },
+  ];
 
   const faqs = [
     {
-      question: 'What certifications do I need?',
-      answer: 'ASE certification is required, with A1-A8 preferred. We also value manufacturer certifications and state inspection licenses.'
+      question: "What certifications do I need?",
+      answer:
+        "ASE certification is required, with A1-A8 preferred. We also value manufacturer certifications and state inspection licenses.",
     },
     {
-      question: 'Do I need my own tools?',
-      answer: 'Basic hand tools are required, but we provide all diagnostic equipment, specialty tools, and heavy equipment in our mobile workshops.'
+      question: "Do I need my own tools?",
+      answer:
+        "Basic hand tools are required, but we provide all diagnostic equipment, specialty tools, and heavy equipment in our mobile workshops.",
     },
     {
-      question: 'What is the work schedule like?',
-      answer: 'We offer flexible scheduling with day, evening, and weekend shifts available. Emergency calls may require occasional overtime at premium rates.'
+      question: "What is the work schedule like?",
+      answer:
+        "We offer flexible scheduling with day, evening, and weekend shifts available. Emergency calls may require occasional overtime at premium rates.",
     },
     {
-      question: 'How much can I earn?',
-      answer: 'Starting at $35/hour for certified techs, up to $60/hour for senior specialists, plus overtime, bonuses, and benefits.'
+      question: "How much can I earn?",
+      answer:
+        "Starting at $35/hour for certified techs, up to $60/hour for senior specialists, plus overtime, bonuses, and benefits.",
     },
     {
-      question: 'What training do you provide?',
-      answer: 'Complete onboarding, ongoing manufacturer training, new technology updates, and support for additional certifications.'
-    }
-  ]
+      question: "What training do you provide?",
+      answer:
+        "Complete onboarding, ongoing manufacturer training, new technology updates, and support for additional certifications.",
+    },
+  ];
 
   return (
     <div className="min-h-screen">
       {/* Hero Section with GIF */}
       <section className="relative py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 overflow-hidden">
         <div className="absolute inset-0 bg-black/30"></div>
-        
+
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-white">
@@ -230,32 +241,48 @@ const MechanicPage = () => {
                 Master Your <span className="text-yellow-400">Craft</span>
               </h1>
               <p className="text-xl lg:text-2xl mb-8 opacity-90 leading-relaxed">
-                Join RoadBuddy's elite team of certified mechanics and take your 
-                automotive career to the next level with cutting-edge technology and great benefits.
+                Join RoadBuddy's elite team of certified mechanics and take your
+                automotive career to the next level with cutting-edge technology
+                and great benefits.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4">
-                <button 
-                  onClick={() => document.getElementById('application-form').scrollIntoView({ behavior: 'smooth' })}
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("application-form")
+                      .scrollIntoView({ behavior: "smooth" })
+                  }
                   className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
                 >
                   Apply Now
                 </button>
-                <button 
-                  onClick={() => document.getElementById('benefits').scrollIntoView({ behavior: 'smooth' })}
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("benefits")
+                      .scrollIntoView({ behavior: "smooth" })
+                  }
                   className="border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
                 >
                   View Benefits
                 </button>
               </div>
             </div>
-            
+
             <div className="flex justify-center">
               <div className="relative">
-                <img 
-                  src="/RB Files/MechanicPage.gif" 
-                  alt="RoadBuddy Mechanic at Work" 
-                  className="w-full max-w-lg rounded-2xl shadow-2xl"
+                {!imageLoaded && (
+                  <div className="w-full max-w-lg h-64 bg-gray-200 rounded-2xl animate-pulse"></div>
+                )}
+                <img
+                  src="/MechanicPage.gif"
+                  alt="RoadBuddy Mechanic at Work"
+                  className={`w-full max-w-lg rounded-2xl shadow-2xl transition-opacity duration-300 ${
+                    imageLoaded ? "opacity-100" : "opacity-0"
+                  }`}
+                  onLoad={() => setImageLoaded(true)}
+                  onError={() => setImageLoaded(true)}
                 />
                 <div className="absolute inset-0 rounded-2xl ring-4 ring-yellow-400/50"></div>
               </div>
@@ -269,10 +296,15 @@ const MechanicPage = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-heading">
-              Why Choose <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">RoadBuddy</span>?
+              Why Choose{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                RoadBuddy
+              </span>
+              ?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We provide the tools, training, and environment for automotive professionals to excel
+              We provide the tools, training, and environment for automotive
+              professionals to excel
             </p>
           </div>
 
@@ -283,21 +315,17 @@ const MechanicPage = () => {
                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-100"
               >
                 <div className="text-center">
-                  <div className="text-6xl mb-6">
-                    {benefit.icon}
-                  </div>
-                  
+                  <div className="text-6xl mb-6">{benefit.icon}</div>
+
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">
                     {benefit.title}
                   </h3>
-                  
+
                   <p className="text-lg font-semibold text-blue-600 mb-3">
                     {benefit.description}
                   </p>
-                  
-                  <p className="text-gray-600">
-                    {benefit.details}
-                  </p>
+
+                  <p className="text-gray-600">{benefit.details}</p>
                 </div>
               </div>
             ))}
@@ -310,7 +338,10 @@ const MechanicPage = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-heading">
-              Service <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Specializations</span>
+              Service{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                Specializations
+              </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Work with modern equipment on diverse automotive systems
@@ -324,18 +355,12 @@ const MechanicPage = () => {
                 className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <div className="text-center">
-                  <div className="text-5xl mb-4">
-                    {service.icon}
-                  </div>
+                  <div className="text-5xl mb-4">{service.icon}</div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 mb-3">
-                    {service.description}
-                  </p>
-                  <p className="text-sm text-blue-600">
-                    {service.tools}
-                  </p>
+                  <p className="text-gray-600 mb-3">{service.description}</p>
+                  <p className="text-sm text-blue-600">{service.tools}</p>
                 </div>
               </div>
             ))}
@@ -348,10 +373,14 @@ const MechanicPage = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-heading">
-              Mechanic <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Requirements</span>
+              Mechanic{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                Requirements
+              </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We're looking for skilled professionals who take pride in their work
+              We're looking for skilled professionals who take pride in their
+              work
             </p>
           </div>
 
@@ -383,7 +412,10 @@ const MechanicPage = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-heading">
-              What Our <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Mechanics Say</span>
+              What Our{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                Mechanics Say
+              </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Hear from experienced technicians about their RoadBuddy career
@@ -392,24 +424,29 @@ const MechanicPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg"
-              >
+              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg">
                 <div className="flex items-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-xl">⭐</span>
+                    <span key={i} className="text-yellow-400 text-xl">
+                      ⭐
+                    </span>
                   ))}
                 </div>
-                
+
                 <p className="text-gray-600 mb-6 italic text-lg">
                   "{testimonial.quote}"
                 </p>
-                
+
                 <div className="border-t pt-4">
-                  <h4 className="font-bold text-gray-900 text-lg">{testimonial.name}</h4>
-                  <p className="text-blue-600 font-semibold">{testimonial.role}</p>
-                  <p className="text-sm text-gray-500">With RoadBuddy: {testimonial.tenure}</p>
+                  <h4 className="font-bold text-gray-900 text-lg">
+                    {testimonial.name}
+                  </h4>
+                  <p className="text-blue-600 font-semibold">
+                    {testimonial.role}
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    With RoadBuddy: {testimonial.tenure}
+                  </p>
                 </div>
               </div>
             ))}
@@ -418,11 +455,17 @@ const MechanicPage = () => {
       </section>
 
       {/* Application Form */}
-      <section id="application-form" className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <section
+        id="application-form"
+        className="py-16 px-4 sm:px-6 lg:px-8 bg-white"
+      >
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-heading">
-              Join Our <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Expert Team</span>
+              Join Our{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                Expert Team
+              </span>
             </h2>
             <p className="text-xl text-gray-600">
               Apply now to become a RoadBuddy certified technician
@@ -445,7 +488,7 @@ const MechanicPage = () => {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-bold text-gray-700 mb-2">
                     Last Name *
@@ -475,7 +518,7 @@ const MechanicPage = () => {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-bold text-gray-700 mb-2">
                     Phone Number *
@@ -505,7 +548,7 @@ const MechanicPage = () => {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-bold text-gray-700 mb-2">
                     Years of Experience *
@@ -536,7 +579,13 @@ const MechanicPage = () => {
                       <input
                         type="checkbox"
                         checked={formData.certifications.includes(cert)}
-                        onChange={(e) => handleCheckboxGroup('certifications', cert, e.target.checked)}
+                        onChange={(e) =>
+                          handleCheckboxGroup(
+                            "certifications",
+                            cert,
+                            e.target.checked
+                          )
+                        }
                         className="text-blue-600"
                       />
                       <span className="text-gray-700">{cert}</span>
@@ -555,7 +604,13 @@ const MechanicPage = () => {
                       <input
                         type="checkbox"
                         checked={formData.specializations.includes(spec)}
-                        onChange={(e) => handleCheckboxGroup('specializations', spec, e.target.checked)}
+                        onChange={(e) =>
+                          handleCheckboxGroup(
+                            "specializations",
+                            spec,
+                            e.target.checked
+                          )
+                        }
                         className="text-blue-600"
                       />
                       <span className="text-gray-700">{spec}</span>
@@ -569,7 +624,7 @@ const MechanicPage = () => {
                   Availability
                 </label>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {['full-time', 'part-time', 'contract'].map((option) => (
+                  {["full-time", "part-time", "contract"].map((option) => (
                     <label key={option} className="flex items-center space-x-3">
                       <input
                         type="radio"
@@ -579,7 +634,9 @@ const MechanicPage = () => {
                         onChange={handleChange}
                         className="text-blue-600"
                       />
-                      <span className="capitalize text-gray-700">{option.replace('-', ' ')}</span>
+                      <span className="capitalize text-gray-700">
+                        {option.replace("-", " ")}
+                      </span>
                     </label>
                   ))}
                 </div>
@@ -598,7 +655,7 @@ const MechanicPage = () => {
                     I own basic hand tools required for automotive repair
                   </span>
                 </label>
-                
+
                 <label className="flex items-start space-x-3">
                   <input
                     type="checkbox"
@@ -612,7 +669,7 @@ const MechanicPage = () => {
                     I consent to a background check and drug screening *
                   </span>
                 </label>
-                
+
                 <label className="flex items-start space-x-3">
                   <input
                     type="checkbox"
@@ -644,7 +701,10 @@ const MechanicPage = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-heading">
-              Frequently Asked <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Questions</span>
+              Frequently Asked{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                Questions
+              </span>
             </h2>
           </div>
 
@@ -657,9 +717,7 @@ const MechanicPage = () => {
                 <h3 className="text-lg font-bold text-gray-900 mb-3">
                   Q: {faq.question}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  A: {faq.answer}
-                </p>
+                <p className="text-gray-600 leading-relaxed">A: {faq.answer}</p>
               </div>
             ))}
           </div>
@@ -674,17 +732,21 @@ const MechanicPage = () => {
               Ready to Level Up Your Career?
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join the premier automotive service team and work with the latest 
+              Join the premier automotive service team and work with the latest
               technology while building a rewarding career.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
-                onClick={() => document.getElementById('application-form').scrollIntoView({ behavior: 'smooth' })}
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("application-form")
+                    .scrollIntoView({ behavior: "smooth" })
+                }
                 className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 Apply Now
               </button>
-              <Link 
+              <Link
                 to="/contact"
                 className="border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
               >
@@ -696,7 +758,7 @@ const MechanicPage = () => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default MechanicPage
+export default MechanicPage;
