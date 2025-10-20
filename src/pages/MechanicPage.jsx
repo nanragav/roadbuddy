@@ -1,52 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import MechanicRegistrationForm from "../components/MechanicRegistrationForm";
 
 const MechanicPage = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    city: "",
-    experience: "",
-    certifications: [],
-    specializations: [],
-    availability: "full-time",
-    ownTools: false,
-    backgroundCheck: false,
-    termsAccepted: false,
-  });
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
-  };
-
-  const handleCheckboxGroup = (name, value, checked) => {
-    if (checked) {
-      setFormData({
-        ...formData,
-        [name]: [...formData[name], value],
-      });
-    } else {
-      setFormData({
-        ...formData,
-        [name]: formData[name].filter((item) => item !== value),
-      });
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Mechanic application submitted:", formData);
-    alert(
-      "Thank you for your application! We will review it and contact you within 48 hours."
-    );
-  };
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   const benefits = [
     {
@@ -487,7 +445,7 @@ const MechanicPage = () => {
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
               Get the official RoadBuddy mechanic app to manage your service
-              requests, track earnings, and grow your business with our platform
+              requests, track earnings, and stay connected with our platform
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -551,7 +509,7 @@ const MechanicPage = () => {
       {/* Application Form */}
       <section
         id="application-form"
-        className="py-16 px-4 sm:px-6 lg:px-8 bg-white"
+        className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50"
       >
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
@@ -562,258 +520,84 @@ const MechanicPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-600">
-              Apply now to become a RoadBuddy certified technician
+              Complete our comprehensive 5-step application process designed for
+              skilled mechanics joining our founding team
             </p>
           </div>
 
-          <div className="bg-gray-50 rounded-2xl p-8 shadow-xl">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">
-                    First Name *
-                  </label>
-                  <input
-                    type="text"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">
-                    Last Name *
-                  </label>
-                  <input
-                    type="text"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">
-                    Phone Number *
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">
-                    City *
-                  </label>
-                  <input
-                    type="text"
-                    name="city"
-                    value={formData.city}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">
-                    Years of Experience *
-                  </label>
-                  <select
-                    name="experience"
-                    value={formData.experience}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                  >
-                    <option value="">Select experience</option>
-                    <option value="1-3">1-3 years</option>
-                    <option value="3-5">3-5 years</option>
-                    <option value="5-10">5-10 years</option>
-                    <option value="10+">10+ years</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-bold text-gray-700 mb-4">
-                  Certifications (select all that apply)
-                </label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {certificationOptions.map((cert) => (
-                    <label key={cert} className="flex items-center space-x-3">
-                      <input
-                        type="checkbox"
-                        checked={formData.certifications.includes(cert)}
-                        onChange={(e) =>
-                          handleCheckboxGroup(
-                            "certifications",
-                            cert,
-                            e.target.checked
-                          )
-                        }
-                        className="text-blue-600"
-                      />
-                      <span className="text-gray-700">{cert}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-bold text-gray-700 mb-4">
-                  Specializations (select your areas of expertise)
-                </label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {specializations.map((spec) => (
-                    <label key={spec} className="flex items-center space-x-3">
-                      <input
-                        type="checkbox"
-                        checked={formData.specializations.includes(spec)}
-                        onChange={(e) =>
-                          handleCheckboxGroup(
-                            "specializations",
-                            spec,
-                            e.target.checked
-                          )
-                        }
-                        className="text-blue-600"
-                      />
-                      <span className="text-gray-700">{spec}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2">
-                  Availability
-                </label>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {["full-time", "part-time", "contract"].map((option) => (
-                    <label key={option} className="flex items-center space-x-3">
-                      <input
-                        type="radio"
-                        name="availability"
-                        value={option}
-                        checked={formData.availability === option}
-                        onChange={handleChange}
-                        className="text-blue-600"
-                      />
-                      <span className="capitalize text-gray-700">
-                        {option.replace("-", " ")}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <label className="flex items-start space-x-3">
-                  <input
-                    type="checkbox"
-                    name="ownTools"
-                    checked={formData.ownTools}
-                    onChange={handleChange}
-                    className="mt-1 text-blue-600"
-                  />
-                  <span className="text-gray-700">
-                    I own basic hand tools required for automotive repair
-                  </span>
-                </label>
-
-                <label className="flex items-start space-x-3">
-                  <input
-                    type="checkbox"
-                    name="backgroundCheck"
-                    checked={formData.backgroundCheck}
-                    onChange={handleChange}
-                    required
-                    className="mt-1 text-blue-600"
-                  />
-                  <span className="text-gray-700">
-                    I consent to a background check and drug screening *
-                  </span>
-                </label>
-
-                <label className="flex items-start space-x-3">
-                  <input
-                    type="checkbox"
-                    name="termsAccepted"
-                    checked={formData.termsAccepted}
-                    onChange={handleChange}
-                    required
-                    className="mt-1 text-blue-600"
-                  />
-                  <span className="text-gray-700">
-                    I agree to the terms and conditions and privacy policy *
-                  </span>
-                </label>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
-              >
-                Submit Application
-              </button>
-            </form>
+          <div className="text-center">
+            <button
+              onClick={() => setIsFormOpen(true)}
+              className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
+            >
+              🔧 Start Mechanic Application
+            </button>
+            <p className="text-sm text-gray-500 mt-4">
+              Application takes approximately 10-15 minutes to complete
+            </p>
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-heading">
               Frequently Asked{" "}
               <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
                 Questions
               </span>
             </h2>
+            <p className="text-xl text-gray-600">
+              Everything you need to know about joining our mechanic team
+            </p>
           </div>
 
           <div className="space-y-6">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl p-6 hover:bg-gray-100 transition-all duration-300"
-              >
-                <h3 className="text-lg font-bold text-gray-900 mb-3">
-                  Q: {faq.question}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">A: {faq.answer}</p>
-              </div>
-            ))}
+            <div className="bg-gray-50 rounded-2xl p-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                What documents do I need to apply?
+              </h3>
+              <p className="text-gray-600">
+                You'll need your Aadhar card, PAN card (optional), recent photo,
+                relevant certifications, and proof of experience. All documents
+                can be uploaded during the application process.
+              </p>
+            </div>
+
+            <div className="bg-gray-50 rounded-2xl p-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                How long does the application process take?
+              </h3>
+              <p className="text-gray-600">
+                The online application takes 10-15 minutes to complete. After
+                submission, our team will review your application and contact
+                you within 48-72 hours for the next steps.
+              </p>
+            </div>
+
+            <div className="bg-gray-50 rounded-2xl p-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                What are the earning opportunities?
+              </h3>
+              <p className="text-gray-600">
+                Mechanics can earn ₹150-300 per service call based on complexity
+                and location. Additional bonuses are available for emergency
+                calls, quality ratings, and regular availability.
+              </p>
+            </div>
+
+            <div className="bg-gray-50 rounded-2xl p-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Do I need my own tools?
+              </h3>
+              <p className="text-gray-600">
+                Basic personal tools are preferred but not mandatory. We provide
+                specialized diagnostic equipment and can supply additional tools
+                for registered mechanics on our platform.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -823,11 +607,12 @@ const MechanicPage = () => {
         <div className="max-w-7xl mx-auto text-center">
           <div className="text-white">
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 font-heading">
-              Ready to Level Up Your Career?
+              Ready to Start Your Journey?
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join the premier automotive service team and work with the latest
-              technology while building a rewarding career.
+              Be among the first professional mechanics to join RoadBuddy's
+              founding team. Our comprehensive application process ensures we
+              build a team of the highest quality mechanics ready for launch.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
@@ -842,15 +627,24 @@ const MechanicPage = () => {
               </button>
               <Link
                 to="/contact"
+                onClick={() =>
+                  window.scrollTo({ top: 0, left: 0, behavior: "instant" })
+                }
                 className="border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
               >
-                <span>Learn More</span>
+                <span>Have Questions?</span>
                 <span>→</span>
               </Link>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Mechanic Registration Form Modal */}
+      <MechanicRegistrationForm
+        isOpen={isFormOpen}
+        onClose={() => setIsFormOpen(false)}
+      />
     </div>
   );
 };
