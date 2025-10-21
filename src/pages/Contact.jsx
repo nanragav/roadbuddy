@@ -37,6 +37,25 @@ const Contact = () => {
     setShowModal(true);
   };
 
+  const handleContactInfo = (action, title) => {
+    let message = "";
+    switch (action) {
+      case "Call Now":
+        message = `📞 ${title} feature will be rolled out soon!`;
+        break;
+      case "Send Email":
+        message = `📧 ${title} feature will be rolled out soon!`;
+        break;
+      case "Get Directions":
+        message = `📍 ${title} feature will be rolled out soon!`;
+        break;
+      default:
+        message = "🚀 This feature will be rolled out soon!";
+    }
+    setModalMessage(message);
+    setShowModal(true);
+  };
+
   const contactInfo = [
     {
       icon: "📞",
@@ -204,7 +223,10 @@ const Contact = () => {
 
                   <p className="text-gray-600 mb-6">{info.description}</p>
 
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 w-full">
+                  <button
+                    onClick={() => handleContactInfo(info.action, info.title)}
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 w-full"
+                  >
                     {info.action}
                   </button>
                 </div>
