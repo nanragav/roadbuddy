@@ -1,7 +1,9 @@
 # RoadBuddy - Roadside Assistance Platform
+
 A modern, responsive roadside assistance platform built with React, Vite, and Tailwind CSS.
 
 ## Features
+
 - Driver and Mechanic Registration
 - Emergency Contact System
 - Service Area Coverage
@@ -12,11 +14,13 @@ A modern, responsive roadside assistance platform built with React, Vite, and Ta
 ### GitHub Pages Setup
 
 1. **Create a GitHub Repository**
+
    - Go to [GitHub.com](https://github.com) and create a new repository
    - Name it `roadbuddy-new` (or your preferred name)
    - Make it public for free hosting
 
 2. **Push Code to GitHub**
+
    ```bash
    git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
    git branch -M main
@@ -24,6 +28,7 @@ A modern, responsive roadside assistance platform built with React, Vite, and Ta
    ```
 
 3. **Enable GitHub Pages**
+
    - Go to your repository settings
    - Scroll down to "Pages" section
    - Under "Source", select "GitHub Actions"
@@ -33,7 +38,9 @@ A modern, responsive roadside assistance platform built with React, Vite, and Ta
    `https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/`
 
 ### Manual Deployment (Alternative)
+
 If you prefer manual deployment:
+
 ```bash
 npm run deploy
 ```

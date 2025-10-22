@@ -72,7 +72,11 @@ const SimpleHome = () => {
                     imageLoaded ? "opacity-100" : "opacity-0"
                   }`}
                   onLoad={() => setImageLoaded(true)}
-                  onError={() => setImageLoaded(true)}
+                  onError={() => {
+                    console.log("GIF failed to load, trying alternative...");
+                    setImageLoaded(true);
+                  }}
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
               </div>
