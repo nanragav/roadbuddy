@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./DriverRegistrationForm.css";
 import {
   X,
   Upload,
@@ -23,27 +24,17 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
     gender: "",
     contactNumber: "",
     email: "",
-    aadharNumber: "",
-    panNumber: "",
     address: "",
-    city: "",
-    state: "",
-    pincode: "",
     emergencyContactName: "",
     emergencyContactNumber: "",
-    emergencyContactRelation: "",
 
     // Driving Details
-    licenseNumber: "",
     licenseType: "",
-    licenseIssueDate: "",
-    licenseExpiryDate: "",
     drivingExperience: "",
     vehicleExpertise: [],
-    languages: [],
+    languages: "",
     workTime: "",
     shortNotice: "",
-    preferredAreas: [],
 
     // Upload Documents
     photo: null,
@@ -52,30 +43,28 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
     licenseFront: null,
     licenseBack: null,
     panCard: null,
-    policeVerification: null,
 
     // Payment Details
     upiId: "",
     bankAccount: "",
     ifscCode: "",
     accountHolderName: "",
-    bankName: "",
 
     // Declaration
     agreeTerms: false,
     eSignature: "",
-    otpVerified: false,
+    paymentCompleted: false,
   });
 
-  const [otpSent, setOtpSent] = useState(false);
-  const [otp, setOtp] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("upi");
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   const steps = [
     { number: 1, title: "Personal Details", icon: <User size={20} /> },
     { number: 2, title: "Driving Details", icon: <Car size={20} /> },
-    { number: 3, title: "Upload Documents", icon: <Shield size={20} /> },
+    { number: 3, title: "Upload Documents", icon: <Upload size={20} /> },
     { number: 4, title: "Payment Details", icon: <CreditCard size={20} /> },
-    { number: 5, title: "Declaration", icon: <Award size={20} /> },
+    { number: 5, title: "Declaration", icon: <FileText size={20} /> },
   ];
 
   const indianStates = [
@@ -164,12 +153,10 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
     }));
   };
 
-  const handleLanguageChange = (language) => {
+  const handleLanguageChange = (value) => {
     setFormData((prev) => ({
       ...prev,
-      languages: prev.languages.includes(language)
-        ? prev.languages.filter((item) => item !== language)
-        : [...prev.languages, language],
+      languages: value,
     }));
   };
 
@@ -182,15 +169,6 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
     }));
   };
 
-  const handleAreaChange = (area) => {
-    setFormData((prev) => ({
-      ...prev,
-      preferredAreas: prev.preferredAreas.includes(area)
-        ? prev.preferredAreas.filter((item) => item !== area)
-        : [...prev.preferredAreas, area],
-    }));
-  };
-
   const handleFileUpload = (field, file) => {
     setFormData((prev) => ({
       ...prev,
@@ -198,22 +176,15 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
     }));
   };
 
-  const sendOTP = () => {
-    if (formData.contactNumber.length === 10) {
-      setOtpSent(true);
-      // Simulate OTP sending
-      alert("OTP sent to your mobile number!");
-    }
+  const handlePaymentClick = () => {
+    setShowPaymentModal(true);
   };
 
-  const verifyOTP = () => {
-    if (otp === "123456") {
-      // Mock verification
-      setFormData((prev) => ({ ...prev, otpVerified: true }));
-      alert("OTP Verified Successfully!");
-    } else {
-      alert("Invalid OTP. Try 123456 for demo.");
-    }
+  const processPayment = () => {
+    // Simulate payment processing - will implement Razorpay later
+    setFormData((prev) => ({ ...prev, paymentCompleted: true }));
+    setShowPaymentModal(false);
+    alert("Payment of ₹99 completed successfully! (Demo mode)");
   };
 
   const nextStep = () => {
@@ -229,111 +200,60 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
   };
 
   const handleSubmit = () => {
-    if (formData.agreeTerms && formData.otpVerified && formData.eSignature) {
+    if (
+      formData.agreeTerms &&
+      formData.paymentCompleted &&
+      formData.eSignature
+    ) {
       alert(
         "Thank you for enrolling! We will verify your profile and you will get a confirmation call. Share our Buddy ID and access. Ready to Onboard."
       );
       onClose();
     } else {
-      alert("Please complete all required fields and verify OTP.");
+      alert("Please complete all required fields and payment.");
     }
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-6">
-          <div className="flex justify-between items-center">
-            <div>
-              <h2 className="text-2xl font-bold">Driver Enrollment Form</h2>
-              <p className="text-blue-100 mt-1">
-                Join RoadBuddy's founding team
-              </p>
-            </div>
-            <button
-              onClick={onClose}
-              className="p-2 hover:bg-white/20 rounded-full transition-colors"
-            >
-              <X size={24} />
-            </button>
-          </div>
+    <div className="modal-overlay">
+      <div className="driver-form-modal">
+        <div className="form-header">
+          <h2>Driver Enrollment Form</h2>
+          <button className="close-btn" onClick={onClose}>
+            <X size={24} />
+          </button>
         </div>
 
         {/* Progress Steps */}
-        <div className="bg-gray-50 px-6 py-4">
-          <div className="flex justify-between items-center">
-            {steps.map((step, index) => (
-              <div key={step.number} className="flex items-center">
-                <div
-                  className={`flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all ${
-                    currentStep > step.number
-                      ? "bg-green-500 border-green-500 text-white"
-                      : currentStep === step.number
-                      ? "bg-blue-600 border-blue-600 text-white"
-                      : "bg-white border-gray-300 text-gray-400"
-                  }`}
-                >
-                  {currentStep > step.number ? <Check size={16} /> : step.icon}
-                </div>
-                <div className="ml-3 hidden sm:block">
-                  <div
-                    className={`text-sm font-medium ${
-                      currentStep >= step.number
-                        ? "text-gray-900"
-                        : "text-gray-500"
-                    }`}
-                  >
-                    Step {step.number}
-                  </div>
-                  <div
-                    className={`text-xs ${
-                      currentStep >= step.number
-                        ? "text-gray-600"
-                        : "text-gray-400"
-                    }`}
-                  >
-                    {step.title}
-                  </div>
-                </div>
-                {index < steps.length - 1 && (
-                  <div
-                    className={`hidden sm:block w-12 h-0.5 mx-4 ${
-                      currentStep > step.number ? "bg-green-500" : "bg-gray-300"
-                    }`}
-                  />
-                )}
+        <div className="progress-steps">
+          {steps.map((step) => (
+            <div
+              key={step.number}
+              className={`step ${currentStep === step.number ? "active" : ""} ${
+                currentStep > step.number ? "completed" : ""
+              }`}
+            >
+              <div className="step-icon">
+                {currentStep > step.number ? <Check size={16} /> : step.icon}
               </div>
-            ))}
-          </div>
+              <div className="step-info">
+                <span className="step-number">Step {step.number}</span>
+                <span className="step-title">{step.title}</span>
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* Form Content */}
-        <div className="overflow-y-auto max-h-[60vh] p-6">
+        <div className="form-content">
           {/* Step 1: Personal Details */}
           {currentStep === 1 && (
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4 mb-6">
-                <div className="p-3 bg-blue-100 rounded-full">
-                  <User size={32} className="text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900">
-                    Personal Details
-                  </h3>
-                  <p className="text-gray-600 mt-1">
-                    Please provide your basic personal information as per your
-                    official documents
-                  </p>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Full Name (as per Aadhar) *
-                  </label>
+            <div className="form-step">
+              <h3>Personal Details</h3>
+              <div className="form-grid">
+                <div className="form-group">
+                  <label>Full Name *</label>
                   <input
                     type="text"
                     value={formData.fullName}
@@ -341,34 +261,27 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                       handleInputChange("fullName", e.target.value)
                     }
                     placeholder="Enter your full name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     required
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Date of Birth *
-                  </label>
+                <div className="form-group">
+                  <label>Date of Birth *</label>
                   <input
                     type="date"
                     value={formData.dateOfBirth}
                     onChange={(e) =>
                       handleInputChange("dateOfBirth", e.target.value)
                     }
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     required
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Gender *
-                  </label>
+                <div className="form-group">
+                  <label>Gender *</label>
                   <select
                     value={formData.gender}
                     onChange={(e) =>
                       handleInputChange("gender", e.target.value)
                     }
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     required
                   >
                     <option value="">Select Gender</option>
@@ -377,151 +290,30 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                     <option value="other">Other</option>
                   </select>
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Mobile Number * (OTP verification)
-                  </label>
-                  <div className="flex space-x-3">
-                    <input
-                      type="tel"
-                      value={formData.contactNumber}
-                      onChange={(e) =>
-                        handleInputChange("contactNumber", e.target.value)
-                      }
-                      placeholder="10-digit mobile number"
-                      maxLength="10"
-                      className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                      required
-                    />
-                    <button
-                      type="button"
-                      className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
-                      onClick={sendOTP}
-                    >
-                      <Phone size={16} />
-                      <span>Send OTP</span>
-                    </button>
-                  </div>
-                  {otpSent && (
-                    <div className="mt-3 space-y-3">
-                      <input
-                        type="text"
-                        value={otp}
-                        onChange={(e) => setOtp(e.target.value)}
-                        placeholder="Enter OTP"
-                        maxLength="6"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                      />
-                      <button
-                        type="button"
-                        className="w-full px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-                        onClick={verifyOTP}
-                      >
-                        Verify OTP
-                      </button>
-                      {formData.otpVerified && (
-                        <div className="flex items-center space-x-2 text-green-600">
-                          <Check size={16} />
-                          <span className="text-sm font-medium">Verified</span>
-                        </div>
-                      )}
-                    </div>
-                  )}
+                <div className="form-group">
+                  <label>Contact Number *</label>
+                  <input
+                    type="tel"
+                    value={formData.contactNumber}
+                    onChange={(e) =>
+                      handleInputChange("contactNumber", e.target.value)
+                    }
+                    placeholder="10-digit mobile number"
+                    maxLength="10"
+                    required
+                  />
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Email ID (Optional)
-                  </label>
+                <div className="form-group">
+                  <label>Email ID (Optional)</label>
                   <input
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
                     placeholder="Enter your email"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Aadhar Number *
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.aadharNumber}
-                    onChange={(e) =>
-                      handleInputChange("aadharNumber", e.target.value)
-                    }
-                    placeholder="12-digit Aadhar number"
-                    maxLength="12"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    PAN Number (Optional)
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.panNumber}
-                    onChange={(e) =>
-                      handleInputChange("panNumber", e.target.value)
-                    }
-                    placeholder="PAN number (ABCDE1234F)"
-                    maxLength="10"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    State *
-                  </label>
-                  <select
-                    value={formData.state}
-                    onChange={(e) => handleInputChange("state", e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    required
-                  >
-                    <option value="">Select State</option>
-                    {indianStates.map((state) => (
-                      <option key={state} value={state}>
-                        {state}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    City *
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.city}
-                    onChange={(e) => handleInputChange("city", e.target.value)}
-                    placeholder="Enter your city"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Pincode *
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.pincode}
-                    onChange={(e) =>
-                      handleInputChange("pincode", e.target.value)
-                    }
-                    placeholder="6-digit pincode"
-                    maxLength="6"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    required
-                  />
-                </div>
-                <div className="space-y-2 md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Complete Address *
-                  </label>
+                <div className="form-group full-width">
+                  <label>Address *</label>
                   <textarea
                     value={formData.address}
                     onChange={(e) =>
@@ -529,14 +321,11 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                     }
                     placeholder="Enter your complete address"
                     rows="3"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     required
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Emergency Contact Name *
-                  </label>
+                <div className="form-group">
+                  <label>Emergency Contact Name *</label>
                   <input
                     type="text"
                     value={formData.emergencyContactName}
@@ -544,39 +333,11 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                       handleInputChange("emergencyContactName", e.target.value)
                     }
                     placeholder="Emergency contact name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     required
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Emergency Contact Relation *
-                  </label>
-                  <select
-                    value={formData.emergencyContactRelation}
-                    onChange={(e) =>
-                      handleInputChange(
-                        "emergencyContactRelation",
-                        e.target.value
-                      )
-                    }
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    required
-                  >
-                    <option value="">Select Relation</option>
-                    <option value="father">Father</option>
-                    <option value="mother">Mother</option>
-                    <option value="spouse">Spouse</option>
-                    <option value="brother">Brother</option>
-                    <option value="sister">Sister</option>
-                    <option value="friend">Friend</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Emergency Contact Number *
-                  </label>
+                <div className="form-group">
+                  <label>Emergency Contact Number *</label>
                   <input
                     type="tel"
                     value={formData.emergencyContactNumber}
@@ -588,7 +349,6 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                     }
                     placeholder="Emergency contact number"
                     maxLength="10"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     required
                   />
                 </div>
@@ -598,94 +358,31 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
 
           {/* Step 2: Driving Details */}
           {currentStep === 2 && (
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4 mb-6">
-                <div className="p-3 bg-blue-100 rounded-full">
-                  <Car size={32} className="text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900">
-                    Driving Details
-                  </h3>
-                  <p className="text-gray-600 mt-1">
-                    Share your driving experience and license information
-                  </p>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Driving License Number *
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.licenseNumber}
-                    onChange={(e) =>
-                      handleInputChange("licenseNumber", e.target.value)
-                    }
-                    placeholder="DL-XXXX-XXXXXXXXXX"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    License Type *
-                  </label>
+            <div className="form-step">
+              <h3>Driving Details</h3>
+              <div className="form-grid">
+                <div className="form-group">
+                  <label>License Type *</label>
                   <select
                     value={formData.licenseType}
                     onChange={(e) =>
                       handleInputChange("licenseType", e.target.value)
                     }
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     required
                   >
                     <option value="">Select License Type</option>
                     <option value="LMV">LMV (Light Motor Vehicle)</option>
-                    <option value="LMV-NT">LMV-NT (Non-Transport)</option>
-                    <option value="MCWG">MCWG (Motorcycle with Gear)</option>
                     <option value="HMV">HMV (Heavy Motor Vehicle)</option>
-                    <option value="HTV">HTV (Heavy Transport Vehicle)</option>
+                    <option value="Others">Others</option>
                   </select>
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    License Issue Date *
-                  </label>
-                  <input
-                    type="date"
-                    value={formData.licenseIssueDate}
-                    onChange={(e) =>
-                      handleInputChange("licenseIssueDate", e.target.value)
-                    }
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    License Expiry Date *
-                  </label>
-                  <input
-                    type="date"
-                    value={formData.licenseExpiryDate}
-                    onChange={(e) =>
-                      handleInputChange("licenseExpiryDate", e.target.value)
-                    }
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Years of Driving Experience *
-                  </label>
+                <div className="form-group">
+                  <label>Years of Driving Experience *</label>
                   <select
                     value={formData.drivingExperience}
                     onChange={(e) =>
                       handleInputChange("drivingExperience", e.target.value)
                     }
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     required
                   >
                     <option value="">Select Experience</option>
@@ -695,55 +392,37 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                     <option value="10+">10+ years</option>
                   </select>
                 </div>
-                <div className="space-y-2 md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Vehicle Expertise * (Select multiple)
-                  </label>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    {vehicleTypes.map((type) => (
-                      <label
-                        key={type}
-                        className="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
-                      >
-                        <input
-                          type="checkbox"
-                          checked={formData.vehicleExpertise.includes(type)}
-                          onChange={() => handleVehicleExpertiseChange(type)}
-                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
-                        />
-                        <span className="text-sm text-gray-700">{type}</span>
-                      </label>
-                    ))}
+                <div className="form-group full-width">
+                  <label>Vehicle Expertise * (Select multiple)</label>
+                  <div className="checkbox-group">
+                    {["Hatchbacks", "Sedan", "SUV", "Luxury", "Commercial"].map(
+                      (type) => (
+                        <label key={type} className="checkbox-label">
+                          <input
+                            type="checkbox"
+                            checked={formData.vehicleExpertise.includes(type)}
+                            onChange={() => handleVehicleExpertiseChange(type)}
+                          />
+                          <span className="checkmark"></span>
+                          {type}
+                        </label>
+                      )
+                    )}
                   </div>
                 </div>
-                <div className="space-y-2 md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Languages Known * (Select multiple)
-                  </label>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    {indianLanguages.map((language) => (
-                      <label
-                        key={language}
-                        className="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
-                      >
-                        <input
-                          type="checkbox"
-                          checked={formData.languages.includes(language)}
-                          onChange={() => handleLanguageChange(language)}
-                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
-                        />
-                        <span className="text-sm text-gray-700">
-                          {language}
-                        </span>
-                      </label>
-                    ))}
-                  </div>
+                <div className="form-group">
+                  <label>Languages Known *</label>
+                  <input
+                    type="text"
+                    value={formData.languages}
+                    onChange={(e) => handleLanguageChange(e.target.value)}
+                    placeholder="e.g., Hindi, English, Regional languages"
+                    required
+                  />
                 </div>
-                <div className="space-y-2 md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Preferred Work Time *
-                  </label>
-                  <div className="space-y-3">
+                <div className="form-group full-width">
+                  <label>Preferred Work Time *</label>
+                  <div className="radio-group">
                     {[
                       {
                         value: "full-time",
@@ -758,10 +437,7 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                         label: "Weekends – Saturday & Sunday",
                       },
                     ].map((option) => (
-                      <label
-                        key={option.value}
-                        className="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
-                      >
+                      <label key={option.value} className="radio-label">
                         <input
                           type="radio"
                           name="workTime"
@@ -770,21 +446,17 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                           onChange={(e) =>
                             handleInputChange("workTime", e.target.value)
                           }
-                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
                         />
-                        <span className="text-sm text-gray-700">
-                          {option.label}
-                        </span>
+                        <span className="radio-mark"></span>
+                        {option.label}
                       </label>
                     ))}
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Available on Short Notice *
-                  </label>
-                  <div className="space-y-3">
-                    <label className="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
+                <div className="form-group">
+                  <label>Available on Short Notice *</label>
+                  <div className="radio-group">
+                    <label className="radio-label">
                       <input
                         type="radio"
                         name="shortNotice"
@@ -793,11 +465,11 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                         onChange={(e) =>
                           handleInputChange("shortNotice", e.target.value)
                         }
-                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
                       />
-                      <span className="text-sm text-gray-700">Yes</span>
+                      <span className="radio-mark"></span>
+                      Yes
                     </label>
-                    <label className="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
+                    <label className="radio-label">
                       <input
                         type="radio"
                         name="shortNotice"
@@ -806,31 +478,10 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                         onChange={(e) =>
                           handleInputChange("shortNotice", e.target.value)
                         }
-                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
                       />
-                      <span className="text-sm text-gray-700">No</span>
+                      <span className="radio-mark"></span>
+                      No
                     </label>
-                  </div>
-                </div>
-                <div className="space-y-2 md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Preferred Service Areas (Select multiple)
-                  </label>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    {preferredAreas.map((area) => (
-                      <label
-                        key={area}
-                        className="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
-                      >
-                        <input
-                          type="checkbox"
-                          checked={formData.preferredAreas.includes(area)}
-                          onChange={() => handleAreaChange(area)}
-                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                        />
-                        <span className="text-sm text-gray-700">{area}</span>
-                      </label>
-                    ))}
                   </div>
                 </div>
               </div>
@@ -839,26 +490,12 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
 
           {/* Step 3: Upload Documents */}
           {currentStep === 3 && (
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4 mb-6">
-                <div className="p-3 bg-blue-100 rounded-full">
-                  <Upload size={32} className="text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900">
-                    Upload Documents
-                  </h3>
-                  <p className="text-gray-600 mt-1">
-                    Please upload clear, readable copies of your documents
-                  </p>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Passport Size Photo *
-                  </label>
-                  <div className="relative">
+            <div className="form-step">
+              <h3>Upload Documents</h3>
+              <div className="upload-grid">
+                <div className="upload-item">
+                  <label>Passport Size Photo *</label>
+                  <div className="file-upload">
                     <input
                       type="file"
                       accept="image/*"
@@ -866,29 +503,16 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                         handleFileUpload("photo", e.target.files[0])
                       }
                       id="photo"
-                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     />
-                    <label
-                      htmlFor="photo"
-                      className="flex items-center justify-center w-full px-4 py-8 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-400 transition-colors cursor-pointer bg-gray-50 hover:bg-blue-50"
-                    >
-                      <div className="text-center">
-                        <Upload
-                          size={24}
-                          className="mx-auto text-gray-400 mb-2"
-                        />
-                        <span className="text-sm text-gray-600">
-                          {formData.photo ? formData.photo.name : "Choose File"}
-                        </span>
-                      </div>
+                    <label htmlFor="photo" className="upload-label">
+                      <Upload size={24} />
+                      {formData.photo ? formData.photo.name : "Choose File"}
                     </label>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Aadhar Card (Front) *
-                  </label>
-                  <div className="relative">
+                <div className="upload-item">
+                  <label>Aadhar Card (Front) *</label>
+                  <div className="file-upload">
                     <input
                       type="file"
                       accept="image/*"
@@ -896,31 +520,18 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                         handleFileUpload("aadharFront", e.target.files[0])
                       }
                       id="aadharFront"
-                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     />
-                    <label
-                      htmlFor="aadharFront"
-                      className="flex items-center justify-center w-full px-4 py-8 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-400 transition-colors cursor-pointer bg-gray-50 hover:bg-blue-50"
-                    >
-                      <div className="text-center">
-                        <Upload
-                          size={24}
-                          className="mx-auto text-gray-400 mb-2"
-                        />
-                        <span className="text-sm text-gray-600">
-                          {formData.aadharFront
-                            ? formData.aadharFront.name
-                            : "Choose File"}
-                        </span>
-                      </div>
+                    <label htmlFor="aadharFront" className="upload-label">
+                      <Upload size={24} />
+                      {formData.aadharFront
+                        ? formData.aadharFront.name
+                        : "Choose File"}
                     </label>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Aadhar Card (Back) *
-                  </label>
-                  <div className="relative">
+                <div className="upload-item">
+                  <label>Aadhar Card (Back) *</label>
+                  <div className="file-upload">
                     <input
                       type="file"
                       accept="image/*"
@@ -928,31 +539,18 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                         handleFileUpload("aadharBack", e.target.files[0])
                       }
                       id="aadharBack"
-                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     />
-                    <label
-                      htmlFor="aadharBack"
-                      className="flex items-center justify-center w-full px-4 py-8 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-400 transition-colors cursor-pointer bg-gray-50 hover:bg-blue-50"
-                    >
-                      <div className="text-center">
-                        <Upload
-                          size={24}
-                          className="mx-auto text-gray-400 mb-2"
-                        />
-                        <span className="text-sm text-gray-600">
-                          {formData.aadharBack
-                            ? formData.aadharBack.name
-                            : "Choose File"}
-                        </span>
-                      </div>
+                    <label htmlFor="aadharBack" className="upload-label">
+                      <Upload size={24} />
+                      {formData.aadharBack
+                        ? formData.aadharBack.name
+                        : "Choose File"}
                     </label>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Driving License (Front) *
-                  </label>
-                  <div className="relative">
+                <div className="upload-item">
+                  <label>Driving License (Front) *</label>
+                  <div className="file-upload">
                     <input
                       type="file"
                       accept="image/*"
@@ -960,31 +558,18 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                         handleFileUpload("licenseFront", e.target.files[0])
                       }
                       id="licenseFront"
-                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     />
-                    <label
-                      htmlFor="licenseFront"
-                      className="flex items-center justify-center w-full px-4 py-8 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-400 transition-colors cursor-pointer bg-gray-50 hover:bg-blue-50"
-                    >
-                      <div className="text-center">
-                        <Upload
-                          size={24}
-                          className="mx-auto text-gray-400 mb-2"
-                        />
-                        <span className="text-sm text-gray-600">
-                          {formData.licenseFront
-                            ? formData.licenseFront.name
-                            : "Choose File"}
-                        </span>
-                      </div>
+                    <label htmlFor="licenseFront" className="upload-label">
+                      <Upload size={24} />
+                      {formData.licenseFront
+                        ? formData.licenseFront.name
+                        : "Choose File"}
                     </label>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Driving License (Back) *
-                  </label>
-                  <div className="relative">
+                <div className="upload-item">
+                  <label>Driving License (Back) *</label>
+                  <div className="file-upload">
                     <input
                       type="file"
                       accept="image/*"
@@ -992,31 +577,18 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                         handleFileUpload("licenseBack", e.target.files[0])
                       }
                       id="licenseBack"
-                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     />
-                    <label
-                      htmlFor="licenseBack"
-                      className="flex items-center justify-center w-full px-4 py-8 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-400 transition-colors cursor-pointer bg-gray-50 hover:bg-blue-50"
-                    >
-                      <div className="text-center">
-                        <Upload
-                          size={24}
-                          className="mx-auto text-gray-400 mb-2"
-                        />
-                        <span className="text-sm text-gray-600">
-                          {formData.licenseBack
-                            ? formData.licenseBack.name
-                            : "Choose File"}
-                        </span>
-                      </div>
+                    <label htmlFor="licenseBack" className="upload-label">
+                      <Upload size={24} />
+                      {formData.licenseBack
+                        ? formData.licenseBack.name
+                        : "Choose File"}
                     </label>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    PAN Card (Optional)
-                  </label>
-                  <div className="relative">
+                <div className="upload-item">
+                  <label>PAN Card (Optional)</label>
+                  <div className="file-upload">
                     <input
                       type="file"
                       accept="image/*"
@@ -1024,23 +596,10 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                         handleFileUpload("panCard", e.target.files[0])
                       }
                       id="panCard"
-                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     />
-                    <label
-                      htmlFor="panCard"
-                      className="flex items-center justify-center w-full px-4 py-8 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-400 transition-colors cursor-pointer bg-gray-50 hover:bg-blue-50"
-                    >
-                      <div className="text-center">
-                        <Upload
-                          size={24}
-                          className="mx-auto text-gray-400 mb-2"
-                        />
-                        <span className="text-sm text-gray-600">
-                          {formData.panCard
-                            ? formData.panCard.name
-                            : "Choose File"}
-                        </span>
-                      </div>
+                    <label htmlFor="panCard" className="upload-label">
+                      <Upload size={24} />
+                      {formData.panCard ? formData.panCard.name : "Choose File"}
                     </label>
                   </div>
                 </div>
@@ -1085,38 +644,21 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
 
           {/* Step 4: Payment Details */}
           {currentStep === 4 && (
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4 mb-6">
-                <div className="p-3 bg-blue-100 rounded-full">
-                  <CreditCard size={32} className="text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900">
-                    Payment & Payout Details
-                  </h3>
-                  <p className="text-gray-600 mt-1">
-                    Provide your banking details for secure payouts
-                  </p>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    UPI ID *
-                  </label>
+            <div className="form-step">
+              <h3>Payment & Payout Details</h3>
+              <div className="form-grid">
+                <div className="form-group">
+                  <label>UPI ID *</label>
                   <input
                     type="text"
                     value={formData.upiId}
                     onChange={(e) => handleInputChange("upiId", e.target.value)}
                     placeholder="example@upi"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     required
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Bank Account Number *
-                  </label>
+                <div className="form-group">
+                  <label>Bank Account Number</label>
                   <input
                     type="text"
                     value={formData.bankAccount}
@@ -1124,29 +666,21 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                       handleInputChange("bankAccount", e.target.value)
                     }
                     placeholder="Bank account number"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    required
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    IFSC Code *
-                  </label>
+                <div className="form-group">
+                  <label>IFSC Code</label>
                   <input
                     type="text"
                     value={formData.ifscCode}
                     onChange={(e) =>
                       handleInputChange("ifscCode", e.target.value)
                     }
-                    placeholder="IFSC Code (e.g., SBIN0001234)"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    required
+                    placeholder="IFSC Code"
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Account Holder Name *
-                  </label>
+                <div className="form-group">
+                  <label>Account Holder Name</label>
                   <input
                     type="text"
                     value={formData.accountHolderName}
@@ -1154,23 +688,6 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                       handleInputChange("accountHolderName", e.target.value)
                     }
                     placeholder="Account holder name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    required
-                  />
-                </div>
-                <div className="space-y-2 md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Bank Name *
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.bankName}
-                    onChange={(e) =>
-                      handleInputChange("bankName", e.target.value)
-                    }
-                    placeholder="e.g., State Bank of India"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                    required
                   />
                 </div>
               </div>
@@ -1179,56 +696,114 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
 
           {/* Step 5: Declaration */}
           {currentStep === 5 && (
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4 mb-6">
-                <div className="p-3 bg-blue-100 rounded-full">
-                  <FileText size={32} className="text-blue-600" />
+            <div className="form-step">
+              <h3>Declaration</h3>
+
+              {/* Payment Section */}
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border-2 border-blue-200">
+                <div className="flex items-center space-x-3 mb-4">
+                  <CreditCard size={24} className="text-blue-600" />
+                  <h4 className="text-lg font-semibold text-gray-900">
+                    Registration Fee Payment
+                  </h4>
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900">
-                    Declaration
-                  </h3>
-                  <p className="text-gray-600 mt-1">
-                    Please read and agree to the terms and conditions
-                  </p>
+                <div className="bg-white rounded-lg p-4 border border-blue-100 mb-4">
+                  <div className="flex justify-between items-center mb-3">
+                    <span className="text-gray-700">Registration Fee:</span>
+                    <span className="text-2xl font-bold text-blue-600">
+                      ₹99
+                    </span>
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    One-time registration fee to join RoadBuddy network
+                  </div>
                 </div>
+
+                <div className="space-y-3 mb-4">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Select Payment Method
+                  </label>
+                  <div className="grid grid-cols-3 gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod("upi")}
+                      className={`p-3 border-2 rounded-lg text-center transition-all ${
+                        paymentMethod === "upi"
+                          ? "border-blue-500 bg-blue-50 text-blue-700"
+                          : "border-gray-200 hover:border-gray-300"
+                      }`}
+                    >
+                      <div className="text-sm font-medium">UPI</div>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod("card")}
+                      className={`p-3 border-2 rounded-lg text-center transition-all ${
+                        paymentMethod === "card"
+                          ? "border-blue-500 bg-blue-50 text-blue-700"
+                          : "border-gray-200 hover:border-gray-300"
+                      }`}
+                    >
+                      <div className="text-sm font-medium">Card</div>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod("netbanking")}
+                      className={`p-3 border-2 rounded-lg text-center transition-all ${
+                        paymentMethod === "netbanking"
+                          ? "border-blue-500 bg-blue-50 text-blue-700"
+                          : "border-gray-200 hover:border-gray-300"
+                      }`}
+                    >
+                      <div className="text-sm font-medium">Net Banking</div>
+                    </button>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handlePaymentClick}
+                  className={`w-full py-3 px-4 rounded-lg font-semibold transition-all ${
+                    formData.paymentCompleted
+                      ? "bg-green-100 text-green-700 border-2 border-green-300 cursor-default"
+                      : "bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl"
+                  }`}
+                  disabled={formData.paymentCompleted}
+                >
+                  {formData.paymentCompleted ? (
+                    <div className="flex items-center justify-center space-x-2">
+                      <Check size={20} />
+                      <span>Payment Completed ✓</span>
+                    </div>
+                  ) : (
+                    `Pay ₹99 via ${paymentMethod.toUpperCase()}`
+                  )}
+                </button>
               </div>
-              <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                <div className="space-y-4 text-sm text-gray-700 leading-relaxed">
+
+              <div className="declaration-content">
+                <div className="declaration-text">
                   <p>
-                    I hereby declare that all information provided is true and
-                    correct to the best of my knowledge. I agree to follow Road
-                    Buddy's professional conduct standards, accept terms for
-                    insurance and liability coverage. I consent to GPS tracking
-                    during service and emergency contact use. I understand that
-                    any false information may result in termination of services
-                    and legal action.
-                  </p>
-                  <p>
-                    I also agree to comply with all applicable Indian laws
-                    including Motor Vehicles Act, 1988, and other relevant
-                    regulations for commercial vehicle operations.
+                    I agree to follow Road Buddy's professional conduct
+                    standards, accept terms for insurance and liability
+                    coverage. Consent to GPS tracking and emergency contact use.
                   </p>
                 </div>
-                <div className="mt-6 space-y-4">
-                  <label className="flex items-start space-x-3 cursor-pointer">
+                <div className="form-group">
+                  <label className="checkbox-label">
                     <input
                       type="checkbox"
                       checked={formData.agreeTerms}
                       onChange={(e) =>
                         handleInputChange("agreeTerms", e.target.checked)
                       }
-                      className="mt-1 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
                     />
-                    <span className="text-sm text-gray-700">
-                      I agree to all terms and conditions *
-                    </span>
+                    <span className="checkmark"></span>I agree to all terms and
+                    conditions *
                   </label>
                 </div>
-                <div className="mt-6 space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    e-Signature * (Type your full name)
-                  </label>
+                <div className="form-group">
+                  <label>e-Signature * (Type your full name)</label>
                   <input
                     type="text"
                     value={formData.eSignature}
@@ -1236,15 +811,12 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
                       handleInputChange("eSignature", e.target.value)
                     }
                     placeholder="Type your full name as digital signature"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     required
                   />
                 </div>
-                {!formData.otpVerified && (
-                  <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                    <p className="text-sm text-yellow-800">
-                      ⚠️ Please verify your OTP in Step 1 before submitting
-                    </p>
+                {!formData.paymentCompleted && (
+                  <div className="warning-message">
+                    <p>⚠️ Please complete payment before submitting</p>
                   </div>
                 )}
               </div>
@@ -1253,44 +825,96 @@ const DriverRegistrationForm = ({ isOpen, onClose }) => {
         </div>
 
         {/* Navigation Buttons */}
-        <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">
-          <div className="flex justify-between items-center">
+        <div className="form-navigation">
+          <button
+            type="button"
+            className="btn btn-outline"
+            onClick={prevStep}
+            disabled={currentStep === 1}
+          >
+            Previous
+          </button>
+          <div className="step-indicator">Step {currentStep} of 5</div>
+          {currentStep < 5 ? (
             <button
               type="button"
-              className="px-6 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              onClick={prevStep}
-              disabled={currentStep === 1}
+              className="btn btn-primary"
+              onClick={nextStep}
             >
-              Previous
+              Next
             </button>
-            <div className="text-sm font-medium text-gray-600">
-              Step {currentStep} of 5
-            </div>
-            {currentStep < 5 ? (
-              <button
-                type="button"
-                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                onClick={nextStep}
-              >
-                Next
-              </button>
-            ) : (
-              <button
-                type="button"
-                className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                onClick={handleSubmit}
-                disabled={
-                  !formData.agreeTerms ||
-                  !formData.otpVerified ||
-                  !formData.eSignature
-                }
-              >
-                Submit Application
-              </button>
-            )}
-          </div>
+          ) : (
+            <button
+              type="button"
+              className="btn btn-success"
+              onClick={handleSubmit}
+              disabled={
+                !formData.agreeTerms ||
+                !formData.paymentCompleted ||
+                !formData.eSignature
+              }
+            >
+              Submit Application
+            </button>
+          )}
         </div>
       </div>
+
+      {/* Payment Modal */}
+      {showPaymentModal && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl p-6 max-w-md w-full mx-4 shadow-2xl">
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CreditCard size={32} className="text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">
+                Complete Payment
+              </h3>
+              <p className="text-gray-600">
+                Pay registration fee to complete your enrollment
+              </p>
+            </div>
+
+            <div className="bg-gray-50 rounded-lg p-4 mb-6">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700">Registration Fee</span>
+                <span className="text-2xl font-bold text-blue-600">₹99</span>
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <p className="text-sm text-gray-600 mb-3">
+                Payment Method:{" "}
+                <span className="font-semibold capitalize">
+                  {paymentMethod}
+                </span>
+              </p>
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                <p className="text-yellow-800 text-sm">
+                  🚧 <strong>Demo Mode:</strong> Razorpay integration will be
+                  implemented later. Click "Pay Now" to simulate payment.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex space-x-3">
+              <button
+                onClick={() => setShowPaymentModal(false)}
+                className="flex-1 py-3 px-4 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={processPayment}
+                className="flex-1 py-3 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+              >
+                Pay Now
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

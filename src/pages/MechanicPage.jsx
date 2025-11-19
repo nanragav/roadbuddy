@@ -47,48 +47,50 @@ const MechanicPage = () => {
 
   const requirements = [
     {
-      category: "Personal Documents",
+      category: "Personal & Workshop Details",
       items: [
-        "Valid Aadhar Card (front & back copy)",
-        "PAN Card (required)",
-        "Recent passport size photograph",
-        "Emergency contact information",
+        "Full name and workshop/business name",
+        "Workshop type (two-wheeler, four-wheeler, or both)",
+        "Contact number and email address",
+        "Aadhar number and GST number (if available)",
+        "Complete workshop address",
       ],
     },
     {
-      category: "Professional Experience",
+      category: "Work & Service Details",
       items: [
-        "1+ years automotive repair experience",
-        "Specialization in repair areas (engine, brakes, electrical, etc.)",
-        "Language skills (Hindi, English, regional languages)",
-        "Professional certifications (optional but preferred)",
+        "Years of experience (0-1, 2-5, 6-10, 11-15, 15+ years)",
+        "Services offered (maintenance, repairs, electrical, etc.)",
+        "Vehicle types (hatchbacks, sedan, SUV, luxury, commercial)",
+        "Service hours and working days preferences",
+        "24x7 availability and travel to customer location",
       ],
     },
     {
-      category: "Documents Upload",
+      category: "Document Upload",
       items: [
-        "Aadhar card (both sides scan/photo)",
-        "PAN card clear image",
-        "Driving license (front & back)",
-        "Professional photo for profile",
+        "Passport size photo (clear image)",
+        "Aadhar card (front & back sides)",
+        "Mechanic certification (if available)",
+        "Workshop photo (clear exterior/interior view)",
       ],
     },
     {
-      category: "Payment Setup",
+      category: "Payment Details",
       items: [
-        "Valid UPI ID for payments",
-        "Bank account details",
-        "IFSC code verification",
-        "Account holder name confirmation",
+        "UPI ID or bank account number",
+        "IFSC code for bank transfers",
+        "Account holder name verification",
+        "Payment method setup for earnings",
       ],
     },
     {
-      category: "Work Preferences",
+      category: "Registration & Declaration",
       items: [
-        "Flexible work timing options",
-        "Own tools availability (basic toolkit preferred)",
-        "Service area preferences",
-        "Mobile number with OTP verification",
+        "₹99 registration fee payment",
+        "Terms and conditions agreement",
+        "e-Signature for application",
+        "Professional service commitment",
       ],
     },
   ];
@@ -204,7 +206,7 @@ const MechanicPage = () => {
     {
       question: "Do I need my own tools?",
       answer:
-        "Yes, you need your own tools and equipment. RoadBuddy connects you with customers through our app, but you provide your own tools and transportation to service locations.",
+        "Yes, you must have all your own tools and equipment. RoadBuddy is a platform that connects you with customers - we don't provide tools, vehicles, or equipment. You're responsible for bringing everything needed to complete the service.",
     },
     {
       question: "What is the work schedule like?",
@@ -214,12 +216,12 @@ const MechanicPage = () => {
     {
       question: "How much can I earn?",
       answer:
-        "You can earn ₹99-129 per service depending on complexity. RoadBuddy takes a commission, and you keep the rest as your earnings.",
+        "You earn ₹150-300 per service call based on complexity and type. RoadBuddy takes a small platform commission for connecting you with customers, and you keep the majority of the payment.",
     },
     {
-      question: "What training do you provide?",
+      question: "What does RoadBuddy provide?",
       answer:
-        "Complete onboarding, ongoing manufacturer training, new technology updates, and support for additional certifications to help you grow your skills.",
+        "RoadBuddy provides the platform technology, customer connections, payment processing, and insurance coverage. We handle customer acquisition, booking system, and payment collection - you focus on providing quality service.",
     },
   ];
 
@@ -600,9 +602,11 @@ const MechanicPage = () => {
                 What are the earning opportunities?
               </h3>
               <p className="text-gray-600">
-                Mechanics can earn ₹150-300 per service call based on complexity
-                and location. Additional bonuses are available for emergency
-                calls, quality ratings, and regular availability.
+                Mechanics earn ₹150-300 per service call based on complexity and
+                location. RoadBuddy takes a small platform commission for
+                providing customer connections and payment processing, while you
+                keep the majority of the service fee. Additional bonuses
+                available for quality ratings.
               </p>
             </div>
 
@@ -611,9 +615,24 @@ const MechanicPage = () => {
                 Do I need my own tools?
               </h3>
               <p className="text-gray-600">
-                Basic personal tools are preferred but not mandatory. We provide
-                specialized diagnostic equipment and can supply additional tools
-                for registered mechanics on our platform.
+                Yes, you must have all your own tools and equipment. RoadBuddy
+                is a platform that connects you with customers - we don't
+                provide tools, vehicles, or diagnostic equipment. You're
+                responsible for bringing everything needed to complete the
+                service professionally.
+              </p>
+            </div>
+
+            <div className="bg-gray-50 rounded-2xl p-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                What does RoadBuddy provide?
+              </h3>
+              <p className="text-gray-600">
+                RoadBuddy provides the platform technology, customer
+                connections, payment processing, and insurance coverage. We
+                handle customer acquisition, booking system, and payment
+                collection - you focus on providing quality service with your
+                own tools and expertise.
               </p>
             </div>
           </div>
