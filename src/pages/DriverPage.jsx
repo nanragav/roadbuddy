@@ -5,6 +5,15 @@ import DriverRegistrationForm from "../components/DriverRegistrationForm";
 const DriverPage = () => {
   const [showDriverForm, setShowDriverForm] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [showAppPopup, setShowAppPopup] = useState(false);
+
+  const handleAppStoreClick = () => {
+    setShowAppPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowAppPopup(false);
+  };
 
   const benefits = [
     {
@@ -177,7 +186,7 @@ const DriverPage = () => {
                 <span className="text-yellow-400">Career Forward</span>
               </h1>
               <p className="text-xl lg:text-2xl mb-8 opacity-90 leading-relaxed">
-                Join RoadBuddy's founding team of professional drivers and be
+                Join RoadBuddy&apos;s founding team of professional drivers and be
                 ready to provide exceptional transportation services when we
                 launch. Our streamlined application process gets you prepared
                 quickly.
@@ -188,7 +197,7 @@ const DriverPage = () => {
                   onClick={() =>
                     document
                       .getElementById("application-form")
-                      .scrollIntoView({ behavior: "smooth" })
+                      ?.scrollIntoView({ behavior: "smooth" })
                   }
                   className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
                 >
@@ -198,7 +207,7 @@ const DriverPage = () => {
                   onClick={() =>
                     document
                       .getElementById("benefits")
-                      .scrollIntoView({ behavior: "smooth" })
+                      ?.scrollIntoView({ behavior: "smooth" })
                   }
                   className="border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
                 >
@@ -281,7 +290,7 @@ const DriverPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We're looking for dedicated professionals who want to make a
+              We&apos;re looking for dedicated professionals who want to make a
               difference
             </p>
           </div>
@@ -346,7 +355,7 @@ const DriverPage = () => {
                 </div>
 
                 <p className="text-gray-600 mb-6 italic text-lg">
-                  "{testimonial.quote}"
+                  &quot;{testimonial.quote}&quot;
                 </p>
 
                 <div className="border-t pt-4">
@@ -376,52 +385,47 @@ const DriverPage = () => {
                 RB Fleet
               </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
               Get the official RoadBuddy driver app to manage your rides, track
               earnings, and stay connected with our platform
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              {/* App Store Button */}
-              <div className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-100">
-                <button className="flex items-center space-x-4 w-full">
-                  <div className="bg-black rounded-xl p-3">
-                    <img
-                      src="/app-store.svg"
-                      alt="App Store"
-                      className="w-8 h-8"
-                    />
-                  </div>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                <div className="text-center mb-4 sm:mb-0 sm:text-left">
+                  <h3 className="text-2xl font-bold mb-2 text-gray-900">
+                    Download RoadBuddy App
+                  </h3>
+                  <p className="text-gray-600">
+                    For customers seeking roadside assistance and transportation
+                  </p>
+                </div>
+                <button
+                  onClick={handleAppStoreClick}
+                  className="bg-black hover:bg-gray-800 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-3"
+                >
+                  <img
+                    src="/app-store.svg"
+                    alt="App Store"
+                    className="w-8 h-8"
+                  />
                   <div className="text-left">
-                    <div className="text-sm text-gray-500">Download on the</div>
-                    <div className="text-xl font-bold text-gray-900">
-                      App Store
-                    </div>
-                    <div className="text-sm text-blue-600 font-semibold">
-                      RB Fleet
-                    </div>
+                    <div className="text-xs opacity-80">Download on the</div>
+                    <div className="text-lg">App Store</div>
                   </div>
                 </button>
-              </div>
-
-              {/* Google Play Button */}
-              <div className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-100">
-                <button className="flex items-center space-x-4 w-full">
-                  <div className="bg-black rounded-xl p-3">
-                    <img
-                      src="/google-play.svg"
-                      alt="Google Play"
-                      className="w-8 h-8"
-                    />
-                  </div>
+                <button
+                  onClick={handleAppStoreClick}
+                  className="bg-black hover:bg-gray-800 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-3"
+                >
+                  <img
+                    src="/google-play.svg"
+                    alt="Google Play"
+                    className="w-8 h-8"
+                  />
                   <div className="text-left">
-                    <div className="text-sm text-gray-500">Get it on</div>
-                    <div className="text-xl font-bold text-gray-900">
-                      Google Play
-                    </div>
-                    <div className="text-sm text-blue-600 font-semibold">
-                      RB Fleet
-                    </div>
+                    <div className="text-xs opacity-80">Get it on</div>
+                    <div className="text-lg">Google Play</div>
                   </div>
                 </button>
               </div>
@@ -438,6 +442,41 @@ const DriverPage = () => {
           </div>
         </div>
       </section>
+
+      {/* App Popup */}
+      {showAppPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
+          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl">
+            <h3 className="text-2xl font-bold mb-4 text-gray-900">
+              RB Fleet App – Coming Soon 🚀
+            </h3>
+            <p className="text-gray-700 mb-6">
+              The RoadBuddy customer and driver apps will be available on the App
+              Store and Google Play after our official launch. Enter your details
+              in the application form to be notified as soon as the apps go live.
+            </p>
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => {
+                  closePopup();
+                  document
+                    .getElementById("application-form")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg"
+              >
+                Go to Application
+              </button>
+              <button
+                onClick={closePopup}
+                className="border border-gray-300 text-gray-700 hover:bg-gray-100 font-semibold py-2 px-4 rounded-lg"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Application Form */}
       <section
@@ -508,7 +547,7 @@ const DriverPage = () => {
               Ready to Start Your Journey?
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Be among the first professional drivers to join RoadBuddy's
+              Be among the first professional drivers to join RoadBuddy&apos;s
               founding team. Our comprehensive application process ensures we
               build a team of the highest quality drivers ready for launch.
             </p>
@@ -517,7 +556,7 @@ const DriverPage = () => {
                 onClick={() =>
                   document
                     .getElementById("application-form")
-                    .scrollIntoView({ behavior: "smooth" })
+                    ?.scrollIntoView({ behavior: "smooth" })
                 }
                 className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
@@ -526,7 +565,7 @@ const DriverPage = () => {
               <Link
                 to="/contact"
                 onClick={() =>
-                  window.scrollTo({ top: 0, left: 0, behavior: "instant" })
+                  window.scrollTo({ top: 0, left: 0, behavior: "auto" })
                 }
                 className="border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
               >

@@ -81,7 +81,7 @@ const Contact = () => {
     {
       icon: "📍",
       title: "Main Office",
-      detail: "123 Service Drive, City, ST 12345",
+      detail: "9/336, Pasumpon Nagar, Vadugapalayam, Pollachi, Coimbatore - 642005",
       description: "Corporate headquarters",
       action: "Get Directions",
     },
@@ -89,41 +89,41 @@ const Contact = () => {
 
   const serviceAreas = [
     {
-      city: "Downtown",
+      city: "Tiruppur",
       coverage: "100%",
       avgResponse: "8 mins",
       mechanics: 15,
     },
     {
-      city: "North Side",
+      city: "Coimbatore",
       coverage: "98%",
       avgResponse: "12 mins",
       mechanics: 12,
     },
     {
-      city: "South Side",
+      city: "Erode",
       coverage: "95%",
       avgResponse: "15 mins",
       mechanics: 10,
     },
     {
-      city: "East District",
+      city: "Salem",
       coverage: "92%",
       avgResponse: "18 mins",
       mechanics: 8,
     },
     {
-      city: "West District",
+      city: "Nilgires",
       coverage: "90%",
       avgResponse: "20 mins",
       mechanics: 7,
     },
-    {
-      city: "Suburbs",
-      coverage: "85%",
-      avgResponse: "25 mins",
-      mechanics: 6,
-    },
+    // {
+    //   city: "Suburb",
+    //   coverage: "85%",
+    //   avgResponse: "25 mins",
+    //   mechanics: 6,
+    // },
   ];
 
   const faqItems = [

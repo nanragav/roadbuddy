@@ -5,6 +5,15 @@ import MechanicRegistrationForm from "../components/MechanicRegistrationForm";
 const MechanicPage = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [showAppPopup, setShowAppPopup] = useState(false);
+
+  const handleAppStoreClick = () => {
+    setShowAppPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowAppPopup(false);
+  };
 
   const benefits = [
     {
@@ -470,8 +479,8 @@ const MechanicPage = () => {
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               {/* App Store Button */}
-              <div className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-100">
-                <button className="flex items-center space-x-4 w-full">
+              <button onClick={handleAppStoreClick} className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-100">
+                <div className="flex items-center space-x-4 w-full">
                   <div className="bg-black rounded-xl p-3">
                     <img
                       src="/app-store.svg"
@@ -488,12 +497,48 @@ const MechanicPage = () => {
                       RB Fix
                     </div>
                   </div>
-                </button>
-              </div>
+                </div>
+              </button>
+
+
+      {/* App Popup */}
+      {showAppPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
+          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl">
+            <h3 className="text-2xl font-bold mb-4 text-gray-900">
+              RB Fix App – Coming Soon 🚀
+            </h3>
+            <p className="text-gray-700 mb-6">
+              The RoadBuddy mechanic app will be available soon on the App Store and
+              Google Play. Complete your registration now to get early access.
+            </p>
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => {
+                  closePopup();
+                  document
+                    .getElementById("application-form")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg"
+              >
+                Go to Application
+              </button>
+              <button
+                onClick={closePopup}
+                className="border border-gray-300 text-gray-700 hover:bg-gray-100 font-semibold py-2 px-4 rounded-lg"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
 
               {/* Google Play Button */}
-              <div className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-100">
-                <button className="flex items-center space-x-4 w-full">
+              <button onClick={handleAppStoreClick} className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-100">
+                <div className="flex items-center space-x-4 w-full">
                   <div className="bg-black rounded-xl p-3">
                     <img
                       src="/google-play.svg"
@@ -510,8 +555,8 @@ const MechanicPage = () => {
                       RB Fix
                     </div>
                   </div>
-                </button>
-              </div>
+                </div>
+              </button>
             </div>
 
             <div className="mt-8 text-center">
@@ -682,6 +727,7 @@ const MechanicPage = () => {
         isOpen={isFormOpen}
         onClose={() => setIsFormOpen(false)}
       />
+      
     </div>
   );
 };
