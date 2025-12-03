@@ -81,7 +81,8 @@ const Contact = () => {
     {
       icon: "📍",
       title: "Main Office",
-      detail: "9/336, Pasumpon Nagar, Vadugapalayam, Pollachi, Coimbatore - 642005",
+      detail:
+        "9/336, Pasumpon Nagar, Vadugapalayam, Pollachi, Coimbatore - 642005",
       description: "Corporate headquarters",
       action: "Get Directions",
     },
@@ -113,7 +114,7 @@ const Contact = () => {
       mechanics: 8,
     },
     {
-      city: "Nilgires",
+      city: "Nilgiris",
       coverage: "90%",
       avgResponse: "20 mins",
       mechanics: 7,

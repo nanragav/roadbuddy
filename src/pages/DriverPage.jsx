@@ -186,8 +186,8 @@ const DriverPage = () => {
                 <span className="text-yellow-400">Career Forward</span>
               </h1>
               <p className="text-xl lg:text-2xl mb-8 opacity-90 leading-relaxed">
-                Join RoadBuddy&apos;s founding team of professional drivers and be
-                ready to provide exceptional transportation services when we
+                Join RoadBuddy&apos;s founding team of professional drivers and
+                be ready to provide exceptional transportation services when we
                 launch. Our streamlined application process gets you prepared
                 quickly.
               </p>
@@ -392,14 +392,7 @@ const DriverPage = () => {
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                <div className="text-center mb-4 sm:mb-0 sm:text-left">
-                  <h3 className="text-2xl font-bold mb-2 text-gray-900">
-                    Download RoadBuddy App
-                  </h3>
-                  <p className="text-gray-600">
-                    For customers seeking roadside assistance and transportation
-                  </p>
-                </div>
+                <div className="text-center mb-4 sm:mb-0 sm:text-left"></div>
                 <button
                   onClick={handleAppStoreClick}
                   className="bg-black hover:bg-gray-800 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-3"
@@ -451,9 +444,10 @@ const DriverPage = () => {
               RB Fleet App – Coming Soon 🚀
             </h3>
             <p className="text-gray-700 mb-6">
-              The RoadBuddy customer and driver apps will be available on the App
-              Store and Google Play after our official launch. Enter your details
-              in the application form to be notified as soon as the apps go live.
+              The RoadBuddy customer and driver apps will be available on the
+              App Store and Google Play after our official launch. Enter your
+              details in the application form to be notified as soon as the apps
+              go live.
             </p>
             <div className="flex justify-end gap-3">
               <button
